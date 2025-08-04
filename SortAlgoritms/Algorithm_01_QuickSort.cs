@@ -1,3 +1,5 @@
+namespace SortAlgoritms;
+
 public class Algorithm_01_QuickSort
 {
     public int[] QuickSort(int[] array)

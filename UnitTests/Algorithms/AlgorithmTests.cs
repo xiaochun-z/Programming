@@ -6,7 +6,7 @@ public sealed class AlgorithmTests
     [TestMethod]
     public void QuickSortTest()
     {
-        var solution = new Algorithm_01_QuickSort();
+        var solution = new SortAlgoritms.Algorithm_01_QuickSort();
         var input = new int[] { 5, 6, 3, 8, 1 };
         var expected = new int[] { 1, 3, 5, 6, 8 };
         var result = solution.QuickSort(input);

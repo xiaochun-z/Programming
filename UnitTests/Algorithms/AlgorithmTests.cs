@@ -22,4 +22,14 @@ public sealed class AlgorithmTests
         var result = solution.MergeSort(input);
         CollectionAssert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+    public void HeapSortTest()
+    {
+        var solution = new SortAlgoritms.Algorithm_03_HeapSort();
+        var input = new int[] { 5, 6, 3, 8, 1 };
+        var expected = new int[] { 1, 3, 5, 6, 8 };
+        var result = solution.HeapSort(input);
+        CollectionAssert.AreEqual(expected, result);
+    }
 }

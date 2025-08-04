@@ -2,7 +2,8 @@ namespace SortAlgoritms;
 
 public class Algorithm_03_HeapSort
 {
-    public int[] HeapSort(int[] array){
+    public int[] HeapSort(int[] array)
+    {
         int n = array.Length;
         for (int i = n / 2 - 1; i >= 0; i--)
             Heapify(array, n, i);
@@ -16,7 +17,8 @@ public class Algorithm_03_HeapSort
         return array;
     }
 
-    private void Heapify(int[] array, int n, int i){
+    private void Heapify(int[] array, int n, int i)
+    {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;

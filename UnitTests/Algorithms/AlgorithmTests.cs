@@ -32,4 +32,14 @@ public sealed class AlgorithmTests
         var result = solution.HeapSort(input);
         CollectionAssert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+    public void CountingSortTest()
+    {
+        var solution = new SortAlgoritms.Algorithm_04_CountingSort();
+        var input = new int[] { 5, 6, 3, 8, 1 };
+        var expected = new int[] { 1, 3, 5, 6, 8 };
+        var result = solution.CountingSort(input);
+        CollectionAssert.AreEqual(expected, result);
+    }
 }

@@ -22,9 +22,10 @@ public sealed class L_020_ValidParenthese
         var list1 = new LeetCode.L021_MergeTwoSortedList.ListNode(1, new LeetCode.L021_MergeTwoSortedList.ListNode(2, new LeetCode.L021_MergeTwoSortedList.ListNode(4)));
         var list2 = new LeetCode.L021_MergeTwoSortedList.ListNode(1, new LeetCode.L021_MergeTwoSortedList.ListNode(3, new LeetCode.L021_MergeTwoSortedList.ListNode(4)));
 
-        var result = solution.MergeTwoLists(list1, list2);
+        var result = LeetCode.L021_MergeTwoSortedList.Solution.MergeTwoLists(list1, list2);
         int[] expected = [1, 1, 2, 3, 4, 4];
-        CollectionAssert.AreEqual(expected, result.ToArray());
+        Assert.IsNotNull(result);
+        CollectionAssert.AreEqual(expected, actual: result.ToArray());
     }
 
     [TestMethod]
@@ -36,10 +37,10 @@ public sealed class L_020_ValidParenthese
         Assert.AreEqual(2, k);
         CollectionAssert.AreEqual(new int[] { 1, 2 }, nums[..k]);
 
-        nums = [0,0,1,1,1,2,2,3,3,4];
+        nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
         k = solution.RemoveDuplicates(nums);
         Assert.AreEqual(5, k);
-        int[] expected = [ 0, 1, 2, 3, 4];
+        int[] expected = [0, 1, 2, 3, 4];
         CollectionAssert.AreEqual(expected, nums[..k]);
     }
 }

@@ -1,15 +1,10 @@
 namespace LeetCode.L021_MergeTwoSortedList;
 
 
-public class ListNode
+public class ListNode(int val = 0, ListNode? next = null)
 {
-    public int val;
-    public ListNode next;
-    public ListNode(int val = 0, ListNode next = null)
-    {
-        this.val = val;
-        this.next = next;
-    }
+    public int val = val;
+    public ListNode? next = next;
 
     public int[] ToArray()
     {
@@ -20,13 +15,13 @@ public class ListNode
             result.Add(current.val);
             current = current.next;
         }
-        return result.ToArray();
+        return [.. result];
     }
 }
 
 public class Solution
 {
-    public ListNode MergeTwoLists(ListNode list1, ListNode list2)
+    public static ListNode? MergeTwoLists(ListNode? list1, ListNode? list2)
     {
         if (list1 == null) return list2;
         if (list2 == null) return list1;

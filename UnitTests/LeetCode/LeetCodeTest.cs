@@ -23,7 +23,7 @@ public sealed class L_020_ValidParenthese
         var list2 = new LeetCode.L021_MergeTwoSortedList.ListNode(1, new LeetCode.L021_MergeTwoSortedList.ListNode(3, new LeetCode.L021_MergeTwoSortedList.ListNode(4)));
 
         var result = solution.MergeTwoLists(list1, list2);
-
-        CollectionAssert.AreEqual(new[] { 1, 1, 2, 3, 4, 4 }, result.ToArray());
+        int[] expected =  [1, 1, 2, 3, 4, 4];
+        CollectionAssert.AreEqual(expected, result.ToArray());
     }
 }

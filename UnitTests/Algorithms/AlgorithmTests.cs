@@ -42,4 +42,14 @@ public sealed class AlgorithmTests
         var result = solution.CountingSort(input);
         CollectionAssert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+    public void InsertSortTest()
+    {
+        var solution = new SortAlgoritms.Algorithm_05_InsertSort();
+        var input = new int[] { 5, 6, 3, 8, 1 };
+        var expected = new int[] { 1, 3, 5, 6, 8 };
+        var result = solution.InsertSort(input);
+        CollectionAssert.AreEqual(expected, result);
+    }
 }

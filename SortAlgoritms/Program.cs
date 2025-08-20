@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("| 算法     | 平均复杂度      | 最坏复杂度      | 稳定性 | 适用场景        |");
-Console.WriteLine("|--------|------------------|----------------|--------|-------------------|");
+Console.WriteLine("| 算法     | 平均复杂度     | 最坏复杂度     | 稳定性 | 适用场景          |");
+Console.WriteLine("|----------|----------------|----------------|--------|-------------------|");
 Console.WriteLine("| 冒泡排序 | O(n^2)         | O(n^2)         | 稳定   | 小规模数据        |");
 Console.WriteLine("| 选择排序 | O(n^2)         | O(n^2)         | 不稳定 | 内存交换少        |");
 Console.WriteLine("| 插入排序 | O(n^2)         | O(n^2)         | 稳定   | 基本有序数据      |");

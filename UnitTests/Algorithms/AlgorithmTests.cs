@@ -52,4 +52,14 @@ public sealed class AlgorithmTests
         var result = solution.InsertSort(input);
         CollectionAssert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+    public void ShellSortTest()
+    {
+        var solution = new SortAlgoritms.Algorithm_06_ShellSort();
+        var input = new int[] { 5, 6, 3, 8, 1 };
+        var expected = new int[] { 1, 3, 5, 6, 8 };
+        var result = solution.ShellSort(input);
+        CollectionAssert.AreEqual(expected, result);
+    }
 }

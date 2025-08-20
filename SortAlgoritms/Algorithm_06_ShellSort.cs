@@ -1,5 +1,3 @@
-using System.Xml.Serialization;
-
 namespace SortAlgoritms;
 
 public class Algorithm_06_ShellSort

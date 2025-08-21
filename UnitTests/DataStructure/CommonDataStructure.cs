@@ -64,6 +64,112 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_Queue()
     {
-        
+        var queue = new Queue<int>();
+
+        // Enqueue elements
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
+
+        // Check count
+        Assert.AreEqual(3, queue.Count);
+
+        // Peek at the front element
+        Assert.AreEqual(1, queue.Peek());
+
+        // Dequeue elements
+        Assert.AreEqual(1, queue.Dequeue());
+        Assert.AreEqual(2, queue.Dequeue());
+
+        // Check remaining count
+        Assert.AreEqual(1, queue.Count);
+
+        // Enqueue another element
+        queue.Enqueue(4);
+
+        // Convert to array and check order
+        CollectionAssert.AreEqual(new int[] { 3, 4 }, queue.ToArray());
+
+        // Clear the queue
+        queue.Clear();
+        Assert.AreEqual(0, queue.Count);
+    }
+}
+
+public partial class BasicDataStructure
+{
+    [TestMethod]
+    public void Test_Stack()
+    {
+        var stack = new Stack<int>();
+
+        // Push elements onto the stack
+        stack.Push(1);
+        stack.Push(2);
+        stack.Push(3);
+
+        // Check count
+        Assert.AreEqual(3, stack.Count);
+
+        // Peek at the top element
+        Assert.AreEqual(3, stack.Peek());
+
+        // Pop elements from the stack
+        Assert.AreEqual(3, stack.Pop());
+        Assert.AreEqual(2, stack.Pop());
+
+        // Check remaining count
+        Assert.AreEqual(1, stack.Count);
+
+        // Push another element
+        stack.Push(4);
+
+        // Convert to array and check order (top to bottom)
+        CollectionAssert.AreEqual(new int[] { 4, 1 }, stack.ToArray());
+
+        // Clear the stack
+        stack.Clear();
+        Assert.AreEqual(0, stack.Count);
+    }
+}
+
+public partial class BasicDataStructure
+{
+    [TestMethod]
+    public void Test_Dictionary()
+    {
+        var dict = new Dictionary<string, int>();
+
+        // Add key-value pairs
+        dict.Add("one", 1);
+        dict["two"] = 2;
+        dict["three"] = 3;
+
+        // Check count
+        Assert.AreEqual(3, dict.Count);
+
+        // Access value by key
+        Assert.AreEqual(2, dict["two"]);
+
+        // Check if key exists
+        Assert.IsTrue(dict.ContainsKey("three"));
+        Assert.IsFalse(dict.ContainsKey("four"));
+
+        // Remove a key
+        dict.Remove("one");
+        Assert.AreEqual(2, dict.Count);
+
+        // TryGetValue usage
+        int value;
+        Assert.IsTrue(dict.TryGetValue("three", out value));
+        Assert.AreEqual(3, value);
+
+        // Enumerate keys and values
+        CollectionAssert.AreEquivalent(new[] { "two", "three" }, dict.Keys.ToArray());
+        CollectionAssert.AreEquivalent(new[] { 2, 3 }, dict.Values.ToArray());
+
+        // Clear dictionary
+        dict.Clear();
+        Assert.AreEqual(0, dict.Count);
     }
 }

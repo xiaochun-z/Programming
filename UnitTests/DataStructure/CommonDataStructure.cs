@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace UnitTests.DataStructure.CommonDataStructure;
 
 [TestClass]
@@ -171,5 +173,157 @@ public partial class BasicDataStructure
         // Clear dictionary
         dict.Clear();
         Assert.AreEqual(0, dict.Count);
+    }
+}
+
+public partial class BasicDataStructure
+{
+    [TestMethod]
+    public void Test_Tuple_ValueTuple()
+    {
+        // Using Tuple (reference type)
+        var tuple = Tuple.Create("Alice", 30);
+        Assert.AreEqual("Alice", tuple.Item1);
+        Assert.AreEqual(30, tuple.Item2);
+
+        // Using ValueTuple (struct, C# 7+)
+        (string name, int age) valueTuple = ("Bob", 25);
+        Assert.AreEqual("Bob", valueTuple.name);
+        Assert.AreEqual(25, valueTuple.age);
+
+        // Deconstruction
+        var (n, a) = valueTuple;
+        Assert.AreEqual("Bob", n);
+        Assert.AreEqual(25, a);
+
+        // ValueTuple with more elements
+        var vt = (1, 2, 3, 4, 5, 6, 7);
+        Assert.AreEqual(7, vt.Item7);
+
+        // Tuple as method return
+        (int sum, int product) Calc(int x, int y) => (x + y, x * y);
+        var result = Calc(3, 4);
+        Assert.AreEqual(7, result.sum);
+        Assert.AreEqual(12, result.product);
+    }
+}
+
+public partial class BasicDataStructure
+{
+    [TestMethod]
+    public void Test_BitArray()
+    {
+        // Create a BitArray of length 8
+        var bits = new BitArray(8);
+
+        // Set some bits
+        bits.Set(0, true);
+        bits.Set(3, true);
+        bits[5] = true;
+
+        // Check values
+        Assert.IsTrue(bits[0]);
+        Assert.IsFalse(bits[1]);
+        Assert.IsTrue(bits[3]);
+        Assert.IsTrue(bits[5]);
+
+        // Count true bits
+        int trueCount = bits.Cast<bool>().Count(b => b);
+        Assert.AreEqual(3, trueCount);
+
+        // Flip all bits
+        bits.Not();
+        Assert.IsFalse(bits[0]);
+        Assert.IsTrue(bits[1]);
+        Assert.IsFalse(bits[3]);
+        Assert.IsFalse(bits[5]);
+
+        // Set all bits to true
+        bits.SetAll(true);
+        Assert.IsTrue(bits.Cast<bool>().All(b => b));
+
+        // Copy to bool array
+        bool[] boolArr = new bool[8];
+        bits.CopyTo(boolArr, 0);
+        CollectionAssert.AreEqual(new bool[] { true, true, true, true, true, true, true, true }, boolArr);
+    }
+}
+
+public partial class BasicDataStructure
+{
+    [TestMethod]
+    public void Test_ArrayList()
+    {
+        var arrayList = new ArrayList();
+
+        // Add elements of different types
+        arrayList.Add(1);
+        arrayList.Add("two");
+        arrayList.Add(3.0);
+
+        // Check count
+        Assert.AreEqual(3, arrayList.Count);
+
+        // Access elements by index
+        Assert.AreEqual(1, arrayList[0]);
+        Assert.AreEqual("two", arrayList[1]);
+        Assert.AreEqual(3.0, arrayList[2]);
+
+        // Insert element
+        arrayList.Insert(1, "inserted");
+        Assert.AreEqual("inserted", arrayList[1]);
+
+        // Remove element
+        arrayList.Remove("two");
+        Assert.IsFalse(arrayList.Contains("two"));
+
+        // Remove by index
+        arrayList.RemoveAt(0);
+        Assert.AreEqual("inserted", arrayList[0]);
+
+        // Clear all elements
+        arrayList.Clear();
+        Assert.AreEqual(0, arrayList.Count);
+    }
+}
+
+public partial class BasicDataStructure
+{
+    [TestMethod]
+    public void Test_SortedList()
+    {
+        var sortedList = new SortedList<int, string>();
+
+        // Add key-value pairs
+        sortedList.Add(3, "three");
+        sortedList.Add(1, "one");
+        sortedList.Add(2, "two");
+
+        // Keys are automatically sorted
+        CollectionAssert.AreEqual(new int[] { 1, 2, 3 }, sortedList.Keys.ToArray());
+        CollectionAssert.AreEqual(new string[] { "one", "two", "three" }, sortedList.Values.ToArray());
+
+        // Access by key
+        Assert.AreEqual("two", sortedList[2]);
+
+        // Access by index
+        Assert.AreEqual("one", sortedList.Values[0]);
+        Assert.AreEqual(1, sortedList.Keys[0]);
+
+        // Update value
+        sortedList[2] = "TWO";
+        Assert.AreEqual("TWO", sortedList[2]);
+
+        // Remove by key
+        sortedList.Remove(1);
+        CollectionAssert.AreEqual(new int[] { 2, 3 }, sortedList.Keys.ToArray());
+
+        // Check if key exists
+        Assert.IsTrue(sortedList.ContainsKey(3));
+        Assert.IsFalse(sortedList.ContainsKey(1));
+
+        // Clear all elements
+        sortedList.Clear();
+        Assert.AreEqual(0, sortedList.Count);
     }
 }

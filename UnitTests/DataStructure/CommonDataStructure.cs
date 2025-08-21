@@ -8,6 +8,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_Array()
     {
+        // Use Array when you need a fixed-size, fast, indexed collection of elements of the same type.
+        // Best for performance-critical scenarios and when size is known in advance.
         int[] arr = new int[5];
         arr = [1, 2, 3, 4, 5];
 
@@ -41,6 +43,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_LinkedList()
     {
+        // Use LinkedList when you need fast insertions and deletions anywhere in the list,
+        // especially at the beginning or end, and don't need indexed access.
         var list = new LinkedList<int>();
         list.AddFirst(1);
         list.AddLast(2);
@@ -66,6 +70,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_Queue()
     {
+        // Use Queue when you need FIFO (first-in, first-out) ordering,
+        // such as processing tasks or buffering data.
         var queue = new Queue<int>();
 
         // Enqueue elements
@@ -103,6 +109,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_Stack()
     {
+        // Use Stack when you need LIFO (last-in, first-out) ordering,
+        // such as undo functionality or evaluating expressions.
         var stack = new Stack<int>();
 
         // Push elements onto the stack
@@ -140,6 +148,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_Dictionary()
     {
+        // Use Dictionary when you need fast lookups, additions, and removals by key,
+        // and keys are unique.
         var dict = new Dictionary<string, int>();
 
         // Add key-value pairs
@@ -181,6 +191,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_Tuple_ValueTuple()
     {
+        // Use Tuple or ValueTuple for grouping multiple values together without creating a custom class,
+        // especially for method returns or temporary data structures.
         // Using Tuple (reference type)
         var tuple = Tuple.Create("Alice", 30);
         Assert.AreEqual("Alice", tuple.Item1);
@@ -213,6 +225,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_BitArray()
     {
+        // Use BitArray when you need to efficiently store and manipulate a collection of bits,
+        // such as flags, binary data, or compact boolean arrays.
         // Create a BitArray of length 8
         var bits = new BitArray(8);
 
@@ -254,6 +268,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_ArrayList()
     {
+        // Use ArrayList for storing a collection of objects of mixed types,
+        // but prefer List<T> for type safety and performance in modern code.
         var arrayList = new ArrayList();
 
         // Add elements of different types
@@ -292,6 +308,8 @@ public partial class BasicDataStructure
     [TestMethod]
     public void Test_SortedList()
     {
+        // Use SortedList when you need a collection of key/value pairs sorted by key,
+        // and want to access elements by both key and index.
         var sortedList = new SortedList<int, string>();
 
         // Add key-value pairs

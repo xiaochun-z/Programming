@@ -58,8 +58,10 @@ public partial class BasicDataStructure
 
         list.AddLast(4);
         list.AddLast(5);
+        Assert.IsNotNull(list.First.Next);
         list.AddBefore(list.First.Next, 2);
         CollectionAssert.AreEqual(new int[] { 1, 2, 3, 4, 5 }, list.ToArray());
+        Assert.IsNotNull(list.Last);
         list.Remove(list.Last);
         CollectionAssert.AreEqual(new int[] { 1, 2, 3, 4 }, list.ToArray());
     }

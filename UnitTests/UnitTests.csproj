@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SortAlgoritms\SortAlgoritms.csproj" />
     <ProjectReference Include="..\LeetCode\LeetCode.csproj" />
+    <ProjectReference Include="..\Patterns\Patterns.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-namespace UnitTests.DataStructure.CommonDataStructure;
+namespace UnitTests;
 
 [TestClass]
 public partial class BasicDataStructure

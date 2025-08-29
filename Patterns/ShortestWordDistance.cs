@@ -25,6 +25,6 @@ public class Solution
         {
             return min;
         }
-        return 1;
+        return -1;
     }
 }

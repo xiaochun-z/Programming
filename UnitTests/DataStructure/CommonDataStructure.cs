@@ -1,4 +1,6 @@
 using System.Collections;
+using System;
+using System.Collections.Generic;
 
 namespace UnitTests.DataStructure.CommonDataStructure;
 
@@ -345,5 +347,38 @@ public partial class BasicDataStructure
         // Clear all elements
         sortedList.Clear();
         Assert.AreEqual(0, sortedList.Count);
+    }
+}
+
+public partial class BasicDataStructure
+{
+    [TestMethod]
+    public void Test_HashSet()
+    {
+        // Use HashSet when you need a collection of unique elements
+        var hashSet = new HashSet<string>();
+
+        // Add elements
+        hashSet.Add("one");
+        hashSet.Add("two");
+        hashSet.Add("three");
+
+        // Check count
+        Assert.AreEqual(3, hashSet.Count);
+
+        // Check if contains
+        Assert.IsTrue(hashSet.Contains("two"));
+        Assert.IsFalse(hashSet.Contains("four"));
+
+        // Remove element
+        hashSet.Remove("two");
+        Assert.IsFalse(hashSet.Contains("two"));
+
+        var result = hashSet.Add("three"); // Duplicate, won't be added
+        Assert.IsFalse(result);
+
+        // Clear all elements
+        hashSet.Clear();
+        Assert.AreEqual(0, hashSet.Count);
     }
 }

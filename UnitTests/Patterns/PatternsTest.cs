@@ -43,4 +43,19 @@ public sealed class Patterns_Tests
         Assert.AreEqual(expected, solution.reverseVowels(input));          // large string reversed
 
     }
+
+    [TestMethod]
+    public void Test_IsPalindrome()
+    {
+        var solution = new Programming.Patterns.Palindrome.Solution();
+
+        // Basic examples
+        Assert.IsTrue(solution.isPalindrome("A man, a plan, a canal: Panama"));
+        Assert.IsFalse(solution.isPalindrome("race a car"));
+        Assert.IsTrue(solution.isPalindrome(" "));
+        Assert.IsTrue(solution.isPalindrome("A"));
+        Assert.IsTrue(solution.isPalindrome("aa"));
+        Assert.IsFalse(solution.isPalindrome("ab"));
+        Assert.IsFalse(solution.isPalindrome("Not a palindrome"));
+    }
 }

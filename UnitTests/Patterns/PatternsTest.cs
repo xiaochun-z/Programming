@@ -58,4 +58,29 @@ public sealed class Patterns_Tests
         Assert.IsFalse(solution.isPalindrome("ab"));
         Assert.IsFalse(solution.isPalindrome("Not a palindrome"));
     }
+
+    [TestMethod]
+    public void Test_LinkedListCycle()
+    {
+        var head = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.ListNode(1)
+        {
+            Next = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.ListNode(2)
+        };
+        head.Next.Next = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.ListNode(3)
+        {
+            Next = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.ListNode(4)
+        };
+        head.Next.Next.Next.Next = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.ListNode(5)
+        {
+            Next = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.ListNode(6)
+        };
+        var solution = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.Solution();
+        Assert.IsFalse(solution.hasCycle(head));
+
+        head.Next.Next.Next.Next.Next.Next = head.Next.Next;     // Creating a cycle
+        Assert.IsTrue(solution.hasCycle(head));
+
+        head.Next.Next.Next.Next.Next.Next = head.Next.Next.Next; // Creating a longer cycle
+        Assert.IsTrue(solution.hasCycle(head));
+    }
 }

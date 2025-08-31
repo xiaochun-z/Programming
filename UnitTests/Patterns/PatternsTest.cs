@@ -133,4 +133,42 @@ public sealed class Patterns_Tests
         Assert.AreEqual(50000, result11); // Explanation: The entire string contains only 1 distinct character, but since K=50, the length is 50000
 
     }
+
+    [TestMethod]
+    public void Test_MergeIntervals()
+    {
+        List<Programming.Patterns.MergeIntervals.MergeIntervals.Interval> input =
+        [
+            new Programming.Patterns.MergeIntervals.MergeIntervals.Interval(1, 4),
+            new Programming.Patterns.MergeIntervals.MergeIntervals.Interval(2, 5),
+            new Programming.Patterns.MergeIntervals.MergeIntervals.Interval(7, 9)
+        ];
+
+        Programming.Patterns.MergeIntervals.MergeIntervals.Solution solution = new();
+        var result = solution.merge(input);
+
+        List<Programming.Patterns.MergeIntervals.MergeIntervals.Interval> expect =
+        [
+            new Programming.Patterns.MergeIntervals.MergeIntervals.Interval(1, 5),
+            new Programming.Patterns.MergeIntervals.MergeIntervals.Interval(7, 9)
+        ];
+        CollectionAssert.AreEqual(expect, result, new IntervalComparer2());
+    }
+}
+
+class IntervalComparer2 : System.Collections.IComparer
+{
+    public int Compare(object? a, object? b)
+    {
+        if (a == null || b == null) return -1;
+        Programming.Patterns.MergeIntervals.MergeIntervals.Interval x = (Programming.Patterns.MergeIntervals.MergeIntervals.Interval)a;
+        Programming.Patterns.MergeIntervals.MergeIntervals.Interval y = (Programming.Patterns.MergeIntervals.MergeIntervals.Interval)b;
+
+        if (x.Start == y.Start && x.End == y.End)
+        {
+            return 0;
+        }
+
+        return -1;
+    }
 }

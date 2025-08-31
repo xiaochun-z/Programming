@@ -83,4 +83,54 @@ public sealed class Patterns_Tests
         head.Next.Next.Next.Next.Next.Next = head.Next.Next.Next; // Creating a longer cycle
         Assert.IsTrue(solution.hasCycle(head));
     }
+
+    [TestMethod]
+    public void Test_SlidingWindow_LongestKDistinct()
+    {
+        var solution = new Programming.Patterns.Slidingwindow.LongestKDisctinct.Solution();
+        // Test case 1: Basic case with K=2
+        var result1 = solution.findLength("araaci", 2);
+        Assert.AreEqual(4, result1); // Explanation: Longest substring with at most 2 distinct characters is "araa"
+
+        // Test case 2: Case where K=1
+        var result2 = solution.findLength("araaci", 1);
+        Assert.AreEqual(2, result2); // Explanation: Longest substring with at most 1 distinct character is "aa"
+
+        // Test case 3: Case with K=3
+        var result3 = solution.findLength("cbbebi", 3);
+        Assert.AreEqual(5, result3); // Explanation: Longest substring with at most 3 distinct characters is "cbbeb" or "bbebi"
+
+        // Test case 4: Case where the string has only one character
+        var result4 = solution.findLength("aaaa", 1);
+        Assert.AreEqual(4, result4); // Explanation: Longest substring with at most 1 distinct character is the whole string "aaaa"
+
+        // Test case 5: Case where K is greater than the number of distinct characters in the string
+        var result5 = solution.findLength("abcabc", 4);
+        Assert.AreEqual(6, result5); // Explanation: Since K is greater than the distinct characters, the longest substring is the whole string "abcabc"
+
+        // Test case 6: Case where the string is empty
+        var result6 = solution.findLength("", 3);
+        Assert.AreEqual(0, result6); // Explanation: No substring in an empty string
+
+        // Test case 7: Case where K=0 (no distinct characters allowed)
+        var result7 = solution.findLength("abcde", 0);
+        Assert.AreEqual(0, result7); // Explanation: No valid substrings with 0 distinct characters
+
+        // Test case 8: Case with the string having only one type of character
+        var result8 = solution.findLength("aaaa", 3);
+        Assert.AreEqual(4, result8); // Explanation: Longest substring with at most 3 distinct characters is the whole string "aaaa"
+
+        // Test case 9: Case where K is 1 and the string has all unique characters
+        var result9 = solution.findLength("abcdef", 1);
+        Assert.AreEqual(1, result9); // Explanation: Longest substring with 1 distinct character is any single character, so the length is 1
+
+        // Test case 10: Case with the string having alternating characters and K=2
+        var result10 = solution.findLength("ababab", 2);
+        Assert.AreEqual(6, result10); // Explanation: Longest substring with at most 2 distinct characters is "ababab"
+
+        // Test case 11: Case where the string has K=50 (upper limit)
+        var result11 = solution.findLength(new string('a', 50000), 50);
+        Assert.AreEqual(50000, result11); // Explanation: The entire string contains only 1 distinct character, but since K=50, the length is 50000
+
+    }
 }

@@ -1,3 +1,5 @@
+using System.Net;
+
 namespace UnitTests;
 
 
@@ -153,6 +155,25 @@ public sealed class Patterns_Tests
             new Programming.Patterns.MergeIntervals.MergeIntervals.Interval(7, 9)
         ];
         CollectionAssert.AreEqual(expect, result, new IntervalComparer2());
+    }
+
+    [TestMethod]
+    public void Test_CyclicSort()
+    {
+        int[] arr = new int[] { 3, 1, 5, 4, 2 };
+        Programming.Patterns.CycleSort.CycleSort.Solution solution = new();
+        arr = solution.sort(arr); // Sort the array using the cyclic sort algorithm.
+        int[] expect = [1, 2, 3, 4, 5];
+        CollectionAssert.AreEqual(expect, arr);
+
+        arr = [2, 6, 4, 3, 1, 5];
+        arr = solution.sort(arr); // Sort another array using the cyclic sort algorithm.
+        expect = [1, 2, 3, 4, 5, 6];
+        CollectionAssert.AreEqual(expect, arr);
+
+        arr = new int[] { 1, 5, 6, 4, 3, 2 };
+        arr = solution.sort(arr); // Sort yet another array using the cyclic sort algorithm.
+        CollectionAssert.AreEqual(expect, arr);
     }
 }
 

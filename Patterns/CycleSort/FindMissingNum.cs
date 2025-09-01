@@ -44,7 +44,6 @@ public class Solution
       {
         i++;
       }
-
     }
 
     for (i = 0; i < nums.Length; i++)

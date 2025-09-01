@@ -185,6 +185,21 @@ public sealed class Patterns_Tests
         result = solution.findMissingNumber([8, 3, 5, 2, 4, 6, 0, 1]);
         Assert.AreEqual(7, result);
     }
+
+
+    [TestMethod]
+    public void Test_FindAllDuplicatedNumbers()
+    {
+        Programming.Patterns.CycleSort.FindDupNums.Solution solution = new();
+
+        List<int> duplicates = solution.findNumbers([3, 4, 4, 5, 5]);
+        List<int> expected = [4, 5];
+        CollectionAssert.AreEqual(expected, duplicates);
+
+        duplicates = solution.findNumbers([5, 4, 7, 2, 3, 5, 3]);
+        expected = [3, 5];
+        CollectionAssert.AreEqual(expected, duplicates);
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

@@ -175,6 +175,16 @@ public sealed class Patterns_Tests
         arr = solution.sort(arr); // Sort yet another array using the cyclic sort algorithm.
         CollectionAssert.AreEqual(expect, arr);
     }
+
+    [TestMethod]
+    public void Test_MissingNum()
+    {
+        Programming.Patterns.CycleSort.FindMissingNum.Solution solution = new();
+        var result = solution.findMissingNumber([4, 0, 3, 1]);
+        Assert.AreEqual(2, result);
+        result = solution.findMissingNumber([8, 3, 5, 2, 4, 6, 0, 1]);
+        Assert.AreEqual(7, result);
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

@@ -226,6 +226,16 @@ public sealed class Patterns_Tests
             i++;
         }
     }
+
+    [TestMethod]
+    public void Test_ValidateParenthese()
+    {
+        Programming.Patterns.Stack.ValidateParenthese.Solution solution = new();
+        Assert.IsTrue(solution.isValid("{([])}"));
+
+        Assert.IsTrue(solution.isValid("{([])}{ss}"));
+        Assert.IsFalse(solution.isValid("{([]})"));
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

@@ -161,7 +161,7 @@ public sealed class Patterns_Tests
     public void Test_CyclicSort()
     {
         int[] arr = new int[] { 3, 1, 5, 4, 2 };
-        Programming.Patterns.CycleSort.CycleSort.Solution solution = new();
+        Programming.Patterns.CyclicSort.CycleSort.Solution solution = new();
         arr = solution.sort(arr); // Sort the array using the cyclic sort algorithm.
         int[] expect = [1, 2, 3, 4, 5];
         CollectionAssert.AreEqual(expect, arr);
@@ -179,7 +179,7 @@ public sealed class Patterns_Tests
     [TestMethod]
     public void Test_MissingNum()
     {
-        Programming.Patterns.CycleSort.FindMissingNum.Solution solution = new();
+        Programming.Patterns.CyclicSort.FindMissingNum.Solution solution = new();
         var result = solution.findMissingNumber([4, 0, 3, 1]);
         Assert.AreEqual(2, result);
         result = solution.findMissingNumber([8, 3, 5, 2, 4, 6, 0, 1]);
@@ -190,7 +190,7 @@ public sealed class Patterns_Tests
     [TestMethod]
     public void Test_FindAllDuplicatedNumbers()
     {
-        Programming.Patterns.CycleSort.FindDupNums.Solution solution = new();
+        Programming.Patterns.CyclicSort.FindDupNums.Solution solution = new();
 
         List<int> duplicates = solution.findNumbers([3, 4, 4, 5, 5]);
         List<int> expected = [4, 5];

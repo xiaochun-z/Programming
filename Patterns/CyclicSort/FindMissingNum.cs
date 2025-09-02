@@ -1,4 +1,4 @@
-namespace Programming.Patterns.CycleSort.FindMissingNum;
+namespace Programming.Patterns.CyclicSort.FindMissingNum;
 
 /*
 Find the Missing Number (easy)

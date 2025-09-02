@@ -1,4 +1,4 @@
-namespace Programming.Patterns.CycleSort.CycleSort;
+namespace Programming.Patterns.CyclicSort.CycleSort;
 
 /*
 Cyclic Sort (easy)

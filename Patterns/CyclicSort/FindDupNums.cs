@@ -1,4 +1,4 @@
-namespace Programming.Patterns.CycleSort.FindDupNums;
+namespace Programming.Patterns.CyclicSort.FindDupNums;
 /*
 Solution: Find all Duplicate Numbers
 

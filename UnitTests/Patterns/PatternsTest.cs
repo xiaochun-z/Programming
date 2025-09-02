@@ -200,6 +200,32 @@ public sealed class Patterns_Tests
         expected = [3, 5];
         CollectionAssert.AreEquivalent(expected, duplicates);
     }
+
+    [TestMethod]
+    public void Test_ReverseSubList()
+    {
+        Programming.Patterns.ReverseLinkedList.ReverseSubList.ListNode head = new(1)
+        {
+            Next = new(2)
+        };
+        head.Next.Next = new(3)
+        {
+            Next = new(4)
+        };
+        head.Next.Next.Next.Next = new(5);
+
+        Programming.Patterns.ReverseLinkedList.ReverseSubList.Solution solution = new();
+        Programming.Patterns.ReverseLinkedList.ReverseSubList.ListNode? result = solution.reverse(head, 2, 4);
+        Console.Write("Nodes of the reversed LinkedList are: ");
+        List<int> expected = [1, 4, 3, 2, 5];
+        var i = 0;
+        while (result != null)
+        {
+            Assert.AreEqual(expected[i], result.Val);
+            result = result.Next;
+            i++;
+        }
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

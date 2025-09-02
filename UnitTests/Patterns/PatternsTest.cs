@@ -194,11 +194,11 @@ public sealed class Patterns_Tests
 
         List<int> duplicates = solution.findNumbers([3, 4, 4, 5, 5]);
         List<int> expected = [4, 5];
-        CollectionAssert.AreEqual(expected, duplicates);
+        CollectionAssert.AreEquivalent(expected, duplicates);
 
         duplicates = solution.findNumbers([5, 4, 7, 2, 3, 5, 3]);
         expected = [3, 5];
-        CollectionAssert.AreEqual(expected, duplicates);
+        CollectionAssert.AreEquivalent(expected, duplicates);
     }
 }
 

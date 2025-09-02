@@ -28,14 +28,32 @@ Each element in nums appears once or twice.
 using System;
 using System.Collections.Generic;
 
-public class Solution {
+public class Solution
+{
 
-    public List<int> findNumbers(int[] nums) {
+    public List<int> findNumbers(int[] nums)
+    {
         List<int> duplicateNumbers = [];
         var i = 0;
         while (i < nums.Length)
         {
-            if(nums[i])
+            var j = nums[i] - 1;
+            if (nums[i] != nums[j])
+            {
+                (nums[i], nums[j]) = (nums[j], nums[i]);
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        for (i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] != i + 1)
+            {
+                duplicateNumbers.Add(nums[i]);
+            }
         }
         return duplicateNumbers;
     }

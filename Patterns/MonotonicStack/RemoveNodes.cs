@@ -44,7 +44,7 @@ public class Solution
     {
         Stack<ListNode> stack = new();  // Create a stack to store nodes in descending order
 
-        ListNode cur = head;
+        ListNode? cur = head;
         while (cur != null)
         {
             while (stack.Count > 0 && stack.Peek().Val < cur.Val)

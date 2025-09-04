@@ -236,6 +236,51 @@ public sealed class Patterns_Tests
         Assert.IsTrue(solution.isValid("{([])}{ss}"));
         Assert.IsFalse(solution.isValid("{([]})"));
     }
+
+    [TestMethod]
+    public void Test_FindLargestTreeRow()
+    {
+        Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.Solution solution = new();
+
+        // Example 1
+        Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode root1 = new(1)
+        {
+            Left = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(2),
+            Right = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(3)
+        };
+        root1.Left.Left = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(4);
+        root1.Left.Right = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(5);
+        root1.Right.Right = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(6);
+
+        List<int> output1 = solution.largestValues(root1);
+        List<int> expected = [1, 3, 6];
+        CollectionAssert.AreEqual(expected, output1);
+
+        // Example 2
+        Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode root2 = new(7)
+        {
+            Left = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(4),
+            Right = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(8)
+        };
+        root2.Left.Left = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(2);
+        root2.Left.Right = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(5);
+        root2.Right.Right = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(9);
+        root2.Left.Left.Right = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(3);
+
+        List<int> output2 = solution.largestValues(root2);
+        expected = [7, 8, 9, 3];
+        CollectionAssert.AreEqual(expected, output2);
+
+        // Example 3
+        Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode root3 = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(10)
+        {
+            Left = new Programming.Patterns.LevelOrderTraversal.FindLargestTreeRow.TreeNode(5)
+        };
+
+        List<int> output3 = solution.largestValues(root3);
+        expected = [10, 5];
+        CollectionAssert.AreEqual(expected, output3);
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

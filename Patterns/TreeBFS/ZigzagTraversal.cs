@@ -1,4 +1,4 @@
-namespace Programming.Patterns.TreeBFF.ZigzagTraversal;
+namespace Programming.Patterns.TreeBFS.ZigzagTraversal;
 
 /*
 Problem Statement

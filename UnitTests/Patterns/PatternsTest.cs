@@ -281,6 +281,27 @@ public sealed class Patterns_Tests
         expected = [10, 5];
         CollectionAssert.AreEqual(expected, output3);
     }
+
+    [TestMethod]
+    public void Test_AllPathForSum()
+    {
+        Programming.Patterns.TreeDFS.AllPathForSum.TreeNode root = new(12);
+        root.Left = new Programming.Patterns.TreeDFS.AllPathForSum.TreeNode(7);
+        root.Right = new Programming.Patterns.TreeDFS.AllPathForSum.TreeNode(1);
+        root.Left.Left = new Programming.Patterns.TreeDFS.AllPathForSum.TreeNode(4);
+        root.Right.Left = new Programming.Patterns.TreeDFS.AllPathForSum.TreeNode(10);
+        root.Right.Right = new Programming.Patterns.TreeDFS.AllPathForSum.TreeNode(5);
+        int sum = 23;
+        Programming.Patterns.TreeDFS.AllPathForSum.Solution solution = new();
+        var result = solution.findPaths(root, sum).ToArray();
+
+        /*
+        [12, 7, 4]
+        [12, 1, 10]
+        */
+        CollectionAssert.AreEqual(new int[] { 12, 7, 4 }, result[0]);
+        CollectionAssert.AreEqual(new int[] { 12, 1, 10 }, result[1]);
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

@@ -1,4 +1,4 @@
-namespace Programming.Patterns.TreeBFF.BinaryTreeTraversal;
+namespace Programming.Patterns.TreeBFS.BinaryTreeTraversal;
 
 /*
 Binary Tree Level Order Traversal

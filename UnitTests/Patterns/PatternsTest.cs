@@ -79,10 +79,10 @@ public sealed class Patterns_Tests
         var solution = new Programming.Patterns.FastAndSlowPointers.LinkedListCycle.Solution();
         Assert.IsFalse(solution.hasCycle(head));
 
-        head.Next.Next.Next.Next.Next.Next = head.Next.Next;     // Creating a cycle
+        head!.Next!.Next!.Next!.Next!.Next!.Next = head.Next.Next;     // Creating a cycle
         Assert.IsTrue(solution.hasCycle(head));
 
-        head.Next.Next.Next.Next.Next.Next = head.Next.Next.Next; // Creating a longer cycle
+        head.Next.Next.Next.Next.Next!.Next = head.Next.Next.Next; // Creating a longer cycle
         Assert.IsTrue(solution.hasCycle(head));
     }
 

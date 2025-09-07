@@ -7,43 +7,47 @@ public class Solution
 {
     public bool validPath(int n, int[][] edges, int start, int end)
     {
-        Dictionary<int, List<int>> adjacency = new();
-        for (var i = 0; i < edges.Length; i++)
-        {
-            if (!adjacency.ContainsKey(edges[i][0]))
-                adjacency.Add(edges[i][0], [edges[i][1]]);
-            else
-                adjacency[edges[i][0]].Add(edges[i][1]);
+        // Input validation
+        // if (n <= 0 || start < 0 || start >= n || end < 0 || end >= n)
+        //     return false;
+        if (start == end)
+            return true;
 
-            if (!adjacency.ContainsKey(edges[i][1]))
-                adjacency.Add(edges[i][1], [edges[i][0]]);
-            else
-                adjacency[edges[i][1]].Add(edges[i][0]);
+        // Initialize adjacency list for all vertices
+        var adjacency = new Dictionary<int, List<int>>();
+        for (int i = 0; i < n; i++)
+        {
+            adjacency[i] = new List<int>();
         }
 
+        // Build adjacency list
+        foreach (var edge in edges)
+        {
+            if (edge.Length != 2 /*|| edge[0] < 0 || edge[0] >= n || edge[1] < 0 || edge[1] >= n*/)
+                return false;
+            adjacency[edge[0]].Add(edge[1]);
+            adjacency[edge[1]].Add(edge[0]);
+        }
 
-        bool[] visited = new bool[n];
-        Stack<int> stack = new(n);
+        // DFS
+        var visited = new bool[n];
+        var stack = new Stack<int>();
         stack.Push(start);
 
         while (stack.Count > 0)
         {
-            var v = stack.Pop();
-            if (visited[v])
-            {
+            var currentVertex = stack.Pop();
+            if (visited[currentVertex])
                 continue;
-            }
 
-            visited[v] = true;
+            visited[currentVertex] = true;
+            if (currentVertex == end)
+                return true;
 
-            if (v == end) return true;
-
-            var vertices = adjacency[v];
-            foreach (var vertex in vertices)
+            foreach (var neighbor in adjacency[currentVertex])
             {
-                if (visited[vertex]) continue;
-
-                stack.Push(vertex);
+                if (!visited[neighbor])
+                    stack.Push(neighbor);
             }
         }
 

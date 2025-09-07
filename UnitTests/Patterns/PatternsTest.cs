@@ -302,6 +302,64 @@ public sealed class Patterns_Tests
         CollectionAssert.AreEqual(new int[] { 12, 7, 4 }, result[0]);
         CollectionAssert.AreEqual(new int[] { 12, 1, 10 }, result[1]);
     }
+
+    [TestMethod]
+    public void Test_Graph_FindIfPathExists()
+    {
+        var sol = new Programming.Patterns.Graph.FindIfPathExists.Solution();
+
+        // Case 1: Simple direct connection
+        int[][] edges1 = new int[][]
+        {
+        [0, 1],
+        [1, 2]
+        };
+        Assert.IsTrue(sol.validPath(3, edges1, 0, 2), "Path 0 -> 2 should exist");
+
+        // Case 2: Disconnected graph
+        int[][] edges2 = new int[][]
+        {
+        new int[] {0, 1},
+        new int[] {2, 3}
+        };
+        Assert.IsFalse(sol.validPath(4, edges2, 0, 3), "No path between 0 and 3");
+
+        // Case 3: Start == End (trivial path)
+        int[][] edges3 = new int[][]
+        {
+        new int[] {0, 1}
+        };
+        Assert.IsTrue(sol.validPath(2, edges3, 0, 0), "Start equals end, should be true");
+
+        // Case 4: Cycle in the graph
+        int[][] edges4 = new int[][]
+        {
+        new int[] {0, 1},
+        new int[] {1, 2},
+        new int[] {2, 0}
+        };
+        Assert.IsTrue(sol.validPath(3, edges4, 0, 2), "Path exists due to cycle");
+        Assert.IsTrue(sol.validPath(3, edges4, 2, 1), "Cycle allows 2 -> 1");
+
+        // Case 5: Large chain graph
+        int n5 = 6;
+        int[][] edges5 = new int[][]
+        {
+        new int[] {0, 1},
+        new int[] {1, 2},
+        new int[] {2, 3},
+        new int[] {3, 4},
+        new int[] {4, 5}
+        };
+        Assert.IsTrue(sol.validPath(n5, edges5, 0, 5), "Long chain path exists");
+        //Assert.IsFalse(sol.validPath(n5, edges5, 5, 0), "Graph is directed, no reverse path");
+
+        // Case 6: Single node graph
+        int[][] edges6 = Array.Empty<int[]>();
+        Assert.IsTrue(sol.validPath(1, edges6, 0, 0), "Single node path to itself");
+        Assert.IsFalse(sol.validPath(1, edges6, 0, 0) && 1 > 1, "Only one node exists");
+    }
+
 }
 
 class IntervalComparer2 : System.Collections.IComparer

@@ -360,6 +360,52 @@ public sealed class Patterns_Tests
         Assert.IsFalse(sol.validPath(1, edges6, 0, 0) && 1 > 1, "Only one node exists");
     }
 
+    [TestMethod]
+    public void Test_Graph_FindProvince()
+    {
+        var solution = new Programming.Patterns.Graph.FindProvinces.Solution();
+
+        // Test Case 1: [[1,1,0],[1,1,0],[0,0,1]] -> 2 provinces
+        int[][] test1 =
+        [
+            [1, 1, 0],
+            [1, 1, 0],
+            [0, 0, 1]
+        ];
+        Assert.AreEqual(2, solution.findProvinces(test1), "Test Case 1 Failed");
+
+        // Test Case 2: [[1,0,0],[0,1,0],[0,0,1]] -> 3 provinces
+        int[][] test2 =
+        [
+            [1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1]
+        ];
+        Assert.AreEqual(3, solution.findProvinces(test2), "Test Case 2 Failed");
+
+        // Test Case 3: [[1,0,0,1],[0,1,1,0],[0,1,1,0],[1,0,0,1]] -> 2 provinces
+        int[][] test3 =
+        [
+            [1, 0, 0, 1],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+            [1, 0, 0, 1]
+        ];
+        Assert.AreEqual(2, solution.findProvinces(test3), "Test Case 3 Failed");
+
+        // Edge Case 1: Single city [[1]] -> 1 province
+        int[][] test4 = [[1]];
+        Assert.AreEqual(1, solution.findProvinces(test4), "Edge Case 1 Failed");
+
+        // Edge Case 2: Fully connected 3x3 [[1,1,1],[1,1,1],[1,1,1]] -> 1 province
+        int[][] test5 =
+        [
+            [1, 1, 1],
+            [1, 1, 1],
+            [1, 1, 1]
+        ];
+        Assert.AreEqual(1, solution.findProvinces(test5), "Edge Case 2 Failed");
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

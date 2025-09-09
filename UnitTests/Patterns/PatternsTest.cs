@@ -451,6 +451,52 @@ public sealed class Patterns_Tests
         };
         CollectionAssert.AreEqual(new List<int> { 2, 4, 5, 6 }, solution.eventualSafeNodes(complexGraph), "Corrected Solution: Complex graph failed");
     }
+
+    [TestMethod]
+    public void TestAllIslandCases()
+    {
+        var solution = new Programming.Patterns.Island.NumOfIsland.Solution();
+
+        // Test Case 1: Multiple islands (3 islands)
+        int[][] matrix1 = new int[][] {
+            new int[] { 1, 1, 1, 0, 0 },
+            new int[] { 0, 1, 0, 0, 1 },
+            new int[] { 0, 0, 1, 1, 0 },
+            new int[] { 0, 0, 1, 0, 0 },
+            new int[] { 0, 0, 1, 0, 0 }
+        };
+        Assert.AreEqual(3, solution.countIslands(matrix1), "Test Case 1: Multiple islands failed");
+
+        // Test Case 2: Two islands (horizontal and L-shaped)
+        int[][] matrix2 = new int[][] {
+            new int[] { 0, 1, 1, 1, 0 },
+            new int[] { 0, 0, 0, 1, 1 },
+            new int[] { 0, 1, 1, 1, 0 },
+            new int[] { 0, 1, 1, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 }
+        };
+        Assert.AreEqual(1, solution.countIslands(matrix2), "Test Case 2: Two islands failed");
+
+        // Test Case 3: No islands (all water)
+        int[][] matrix3 = new int[][] {
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 }
+        };
+        Assert.AreEqual(0, solution.countIslands(matrix3), "Test Case 3: No islands failed");
+
+        // Test Case 4: Single large island
+        int[][] matrix4 = new int[][] {
+            new int[] { 1, 1, 0, 0, 1 },
+            new int[] { 1, 1, 0, 1, 1 },
+            new int[] { 0, 1, 1, 1, 0 },
+            new int[] { 0, 1, 1, 0, 0 },
+            new int[] { 1, 1, 0, 0, 0 }
+        };
+        Assert.AreEqual(1, solution.countIslands(matrix4), "Test Case 4: Single large island failed");
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

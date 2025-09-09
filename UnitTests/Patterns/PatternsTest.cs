@@ -406,6 +406,51 @@ public sealed class Patterns_Tests
         ];
         Assert.AreEqual(1, solution.findProvinces(test5), "Edge Case 2 Failed");
     }
+
+    [TestMethod]
+    public void TestAllSafeNodesCases()
+    {
+        var solution = new Programming.Patterns.Graph.SafeNodes.Solution();
+
+        // Test Case 1: Empty Graph
+        int[][] emptyGraph = new int[0][];
+        CollectionAssert.AreEqual(new List<int>(), solution.eventualSafeNodes(emptyGraph), "Corrected Solution: Empty graph failed");
+
+        // Test Case 2: Single Node with No Edges
+        int[][] singleNodeGraph = new int[][] { new int[] { } };
+        CollectionAssert.AreEqual(new List<int> { 0 }, solution.eventualSafeNodes(singleNodeGraph), "Corrected Solution: Single node failed");
+
+        // Test Case 3: Simple Terminal Nodes
+        int[][] simpleGraph = new int[][] {
+            new int[] { 1, 2 }, // 0 -> 1, 2
+            new int[] { },      // 1 is terminal
+            new int[] { },      // 2 is terminal
+            new int[] { 1 }     // 3 -> 1
+        };
+        CollectionAssert.AreEqual(new List<int> { 0, 1, 2, 3 }, solution.eventualSafeNodes(simpleGraph), "Corrected Solution: Simple terminal nodes failed");
+
+        // Test Case 4: Graph with Cycle
+        int[][] cycleGraph = new int[][] {
+            new int[] { 1 },    // 0 -> 1
+            new int[] { 2 },    // 1 -> 2
+            new int[] { 0 },    // 2 -> 0 (cycle)
+            new int[] { 4 },    // 3 -> 4
+            new int[] { }       // 4 is terminal
+        };
+        CollectionAssert.AreEqual(new List<int> { 3, 4 }, solution.eventualSafeNodes(cycleGraph), "Corrected Solution: Graph with cycle failed");
+
+        // Test Case 5: Complex Graph
+        int[][] complexGraph = new int[][] {
+            new int[] { 1, 2 }, // 0 -> 1, 2
+            new int[] { 2, 3 }, // 1 -> 2, 3
+            new int[] { 5 },    // 2 -> 5
+            new int[] { 0 },    // 3 -> 0 (cycle)
+            new int[] { 5 },    // 4 -> 5
+            new int[] { },      // 5 is terminal
+            new int[] { 4, 5 }  // 6 -> 4, 5
+        };
+        CollectionAssert.AreEqual(new List<int> { 2, 4, 5, 6 }, solution.eventualSafeNodes(complexGraph), "Corrected Solution: Complex graph failed");
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

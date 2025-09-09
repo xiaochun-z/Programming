@@ -497,6 +497,53 @@ public sealed class Patterns_Tests
         };
         Assert.AreEqual(1, solution.countIslands(matrix4), "Test Case 4: Single large island failed");
     }
+
+
+    [TestMethod]
+    public void TestAllMaxAreaIslandCases()
+    {
+        var solution = new Programming.Patterns.Island.BiggestIsland.Solution();
+
+        // Test Case 1: Multiple islands (largest area = 5)
+        int[][] matrix1 = new int[][] {
+            new int[] { 1, 1, 1, 0, 0 },
+            new int[] { 0, 1, 0, 0, 1 },
+            new int[] { 0, 0, 1, 1, 0 },
+            new int[] { 0, 1, 1, 0, 0 },
+            new int[] { 0, 0, 1, 0, 0 }
+        };
+        Assert.AreEqual(5, solution.maxAreaOfIsland(matrix1), "Test Case 1: Multiple islands failed");
+
+        // Test Case 2: Multiple islands (largest area = 4)
+        int[][] matrix2 = new int[][] {
+            new int[] { 1, 1, 0, 1, 0 },
+            new int[] { 0, 1, 1, 0, 1 },
+            new int[] { 1, 0, 0, 1, 0 },
+            new int[] { 0, 1, 0, 0, 1 },
+            new int[] { 1, 0, 1, 1, 0 }
+        };
+        Assert.AreEqual(4, solution.maxAreaOfIsland(matrix2), "Test Case 2: Multiple islands failed");
+
+        // Test Case 3: No islands (all water)
+        int[][] matrix3 = new int[][] {
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 },
+            new int[] { 0, 0, 0, 0, 0 }
+        };
+        Assert.AreEqual(0, solution.maxAreaOfIsland(matrix3), "Test Case 3: No islands failed");
+
+        // Test Case 4: Single large island (area = 24)
+        int[][] matrix4 = new int[][] {
+            new int[] { 1, 1, 1, 1, 1 },
+            new int[] { 1, 1, 1, 1, 1 },
+            new int[] { 1, 1, 0, 1, 1 },
+            new int[] { 1, 1, 1, 1, 1 },
+            new int[] { 1, 1, 1, 1, 1 }
+        };
+        Assert.AreEqual(24, solution.maxAreaOfIsland(matrix4), "Test Case 4: Single large island failed");
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

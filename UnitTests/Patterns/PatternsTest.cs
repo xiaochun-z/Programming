@@ -544,6 +544,104 @@ public sealed class Patterns_Tests
         };
         Assert.AreEqual(24, solution.maxAreaOfIsland(matrix4), "Test Case 4: Single large island failed");
     }
+
+    [TestMethod]
+    public void TestHeapBuilder_AllCases()
+    {
+        // Test invalid constructor
+        Assert.ThrowsException<ArgumentException>(() => new Programming.Patterns.TwoHeaps.HeapBuilder.HeapBuilder(2), "Expected ArgumentException for invalid type 2");
+        Assert.ThrowsException<ArgumentException>(() => new Programming.Patterns.TwoHeaps.HeapBuilder.HeapBuilder(-1), "Expected ArgumentException for invalid type -1");
+
+        // Initialize heaps
+        var minHeap = new Programming.Patterns.TwoHeaps.HeapBuilder.HeapBuilder(0); // Min-heap
+        var maxHeap = new Programming.Patterns.TwoHeaps.HeapBuilder.HeapBuilder(1); // Max-heap
+
+        // Test empty heap
+        Assert.IsNull(minHeap.Peek(), "Min-heap Peek should return null for empty heap");
+        Assert.IsNull(maxHeap.Peek(), "Max-heap Peek should return null for empty heap");
+        Assert.AreEqual(0, minHeap.Get().Length, "Min-heap Get should return empty array");
+        Assert.AreEqual(0, maxHeap.Get().Length, "Max-heap Get should return empty array");
+        Assert.ThrowsException<InvalidOperationException>(() => minHeap.ExtractRoot(), "Min-heap ExtractRoot should throw on empty heap");
+        Assert.ThrowsException<InvalidOperationException>(() => maxHeap.ExtractRoot(), "Max-heap ExtractRoot should throw on empty heap");
+
+        // Test single element
+        minHeap.Insert(42);
+        Assert.AreEqual(42, minHeap.Peek(), "Min-heap Peek should return 42");
+        Assert.AreEqual(42, minHeap.ExtractRoot(), "Min-heap ExtractRoot should return 42");
+        Assert.IsNull(minHeap.Peek(), "Min-heap Peek should return null after extraction");
+
+        maxHeap.Insert(42);
+        Assert.AreEqual(42, maxHeap.Peek(), "Max-heap Peek should return 42");
+        Assert.AreEqual(42, maxHeap.ExtractRoot(), "Max-heap ExtractRoot should return 42");
+        Assert.IsNull(maxHeap.Peek(), "Max-heap Peek should return null after extraction");
+
+        // Test multiple elements and heap property
+        int[] values = new int[] { 5, 3, 7, 1, 4 };
+        foreach (var value in values)
+        {
+            minHeap.Insert(value);
+            maxHeap.Insert(value);
+        }
+
+        // Verify min-heap property (parent <= children)
+        int[] minHeapArray = minHeap.Get();
+        for (int i = 0; i < minHeapArray.Length; i++)
+        {
+            int leftChild = 2 * i + 1;
+            int rightChild = 2 * i + 2;
+            if (leftChild < minHeapArray.Length)
+                Assert.IsTrue(minHeapArray[i] <= minHeapArray[leftChild], $"Min-heap property violated at index {i}");
+            if (rightChild < minHeapArray.Length)
+                Assert.IsTrue(minHeapArray[i] <= minHeapArray[rightChild], $"Min-heap property violated at index {i}");
+        }
+
+        // Verify max-heap property (parent >= children)
+        int[] maxHeapArray = maxHeap.Get();
+        for (int i = 0; i < maxHeapArray.Length; i++)
+        {
+            int leftChild = 2 * i + 1;
+            int rightChild = 2 * i + 2;
+            if (leftChild < maxHeapArray.Length)
+                Assert.IsTrue(maxHeapArray[i] >= maxHeapArray[leftChild], $"Max-heap property violated at index {i}");
+            if (rightChild < maxHeapArray.Length)
+                Assert.IsTrue(maxHeapArray[i] >= maxHeapArray[rightChild], $"Max-heap property violated at index {i}");
+        }
+
+        // Test min-heap extraction (ascending order)
+        int[] minExpected = new int[] { 1, 3, 4, 5, 7 };
+        for (int i = 0; i < minExpected.Length; i++)
+        {
+            int extracted = minHeap.ExtractRoot();
+            Assert.AreEqual(minExpected[i], extracted, $"Min-heap expected {minExpected[i]} at extraction {i}");
+        }
+
+        // Test max-heap extraction (descending order)
+        int[] maxExpected = new int[] { 7, 5, 4, 3, 1 };
+        for (int i = 0; i < maxExpected.Length; i++)
+        {
+            int extracted = maxHeap.ExtractRoot();
+            Assert.AreEqual(maxExpected[i], extracted, $"Max-heap expected {maxExpected[i]} at extraction {i}");
+        }
+
+        // Test duplicates
+        minHeap = new Programming.Patterns.TwoHeaps.HeapBuilder.HeapBuilder(0);
+        minHeap.Insert(3);
+        minHeap.Insert(3);
+        minHeap.Insert(3);
+        Assert.AreEqual(3, minHeap.ExtractRoot(), "Min-heap should extract 3");
+        Assert.AreEqual(3, minHeap.ExtractRoot(), "Min-heap should extract 3");
+        Assert.AreEqual(3, minHeap.ExtractRoot(), "Min-heap should extract 3");
+        Assert.IsNull(minHeap.Peek(), "Min-heap should be empty after extracting duplicates");
+
+        maxHeap = new Programming.Patterns.TwoHeaps.HeapBuilder.HeapBuilder(1);
+        maxHeap.Insert(3);
+        maxHeap.Insert(3);
+        maxHeap.Insert(3);
+        Assert.AreEqual(3, maxHeap.ExtractRoot(), "Max-heap should extract 3");
+        Assert.AreEqual(3, maxHeap.ExtractRoot(), "Max-heap should extract 3");
+        Assert.AreEqual(3, maxHeap.ExtractRoot(), "Max-heap should extract 3");
+        Assert.IsNull(maxHeap.Peek(), "Max-heap should be empty after extracting duplicates");
+    }
 }
 
 class IntervalComparer2 : System.Collections.IComparer

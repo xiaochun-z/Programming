@@ -2,7 +2,6 @@ namespace Programming.Patterns.Subsets.Subset;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 /*
 
@@ -53,3 +52,13 @@ public class Solution
         return subsets;
     }
 }
+
+/*
+given: [1,2]
+---
+initial: []
+---
+add 1 to initial [] -> [1], add [1] to original list -> [],[1]
+---
+add 2 to [],[1]-> [2],[1,2], add to original list-> [],[1],[2],[1,2]
+*/

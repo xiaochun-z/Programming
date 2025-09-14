@@ -1,10 +1,8 @@
-using System.Net;
-
 namespace UnitTests;
 
 
 [TestClass]
-public sealed class Patterns_Tests
+public partial class Patterns_Tests
 {
     [TestMethod]
     public void Test_ReverseVowel()

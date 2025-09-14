@@ -183,4 +183,52 @@ public partial class Patterns_Tests
         Assert.AreEqual(expected5.Count, result5.Count, "Test case 5: Incorrect number of permutations");
         CollectionAssert.AreEquivalent(expected5, result5, "Test case 5: Permutations do not match");
     }
+
+    [TestMethod]
+    public void Test_OrderAgnosticBinarySearch()
+    {
+        Programming.Patterns.ModifiedBinarySearch.OrderAgnosticBinarySearch.Solution solution = new();
+
+        // Test case 1: Ascending order, key at the end (Example 1)
+        int[] arr1 = { 4, 6, 10 };
+        int key1 = 10;
+        int result1 = solution.search(arr1, key1);
+        Assert.AreEqual(2, result1, "Test case 1: Incorrect index for key 10 in ascending array");
+
+        // Test case 2: Ascending order, key in the middle (Example 2)
+        int[] arr2 = { 1, 2, 3, 4, 5, 6, 7 };
+        int key2 = 5;
+        int result2 = solution.search(arr2, key2);
+        Assert.AreEqual(4, result2, "Test case 2: Incorrect index for key 5 in ascending array");
+
+        // Test case 3: Descending order, key at the start (Example 3)
+        int[] arr3 = { 10, 6, 4 };
+        int key3 = 10;
+        int result3 = solution.search(arr3, key3);
+        Assert.AreEqual(0, result3, "Test case 3: Incorrect index for key 10 in descending array");
+
+        // Test case 4: Descending order, key at the end (Example 4)
+        int[] arr4 = { 10, 6, 4 };
+        int key4 = 4;
+        int result4 = solution.search(arr4, key4);
+        Assert.AreEqual(2, result4, "Test case 4: Incorrect index for key 4 in descending array");
+
+        // Test case 5: Single element array, key present
+        int[] arr5 = { 5 };
+        int key5 = 5;
+        int result5 = solution.search(arr5, key5);
+        Assert.AreEqual(0, result5, "Test case 5: Incorrect index for key in single-element array");
+
+        // Test case 6: Key not present in ascending array
+        int[] arr6 = { 1, 2, 3, 4, 5 };
+        int key6 = 7;
+        int result6 = solution.search(arr6, key6);
+        Assert.AreEqual(-1, result6, "Test case 6: Should return -1 for key not found in ascending array");
+
+        // Test case 7: Array with duplicates, find first occurrence
+        int[] arr7 = { 1, 2, 2, 2, 3 };
+        int key7 = 2;
+        int result7 = solution.search(arr7, key7);
+        Assert.IsTrue(result7 >= 1 && result7 <= 3, "Test case 7: Incorrect index for key 2 in array with duplicates");
+    }
 }

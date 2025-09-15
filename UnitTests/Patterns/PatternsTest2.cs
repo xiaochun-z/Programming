@@ -231,4 +231,88 @@ public partial class Patterns_Tests
         int result7 = solution.search(arr7, key7);
         Assert.IsTrue(result7 >= 1 && result7 <= 3, "Test case 7: Incorrect index for key 2 in array with duplicates");
     }
+
+    [TestMethod]
+    public void Test_SearchNextLetter()
+    {
+        Programming.Patterns.ModifiedBinarySearch.NextLetter.Solution solution = new();
+
+        // Test case 1: Key present in array (Example 1)
+        char[] letters1 = { 'a', 'c', 'f', 'h' };
+        char key1 = 'f';
+        char result1 = solution.searchNextLetter(letters1, key1);
+        Assert.AreEqual('h', result1, "Test case 1: Incorrect next letter for key 'f'");
+
+        // Test case 2: Key not in array, between letters (Example 2)
+        char[] letters2 = { 'a', 'c', 'f', 'h' };
+        char key2 = 'b';
+        char result2 = solution.searchNextLetter(letters2, key2);
+        Assert.AreEqual('c', result2, "Test case 2: Incorrect next letter for key 'b'");
+
+        // Test case 3: Key greater than all letters, circular (Example 3)
+        char[] letters3 = { 'a', 'c', 'f', 'h' };
+        char key3 = 'm';
+        char result3 = solution.searchNextLetter(letters3, key3);
+        Assert.AreEqual('a', result3, "Test case 3: Incorrect next letter for key 'm'");
+
+        // Test case 4: Key is last letter, circular (Example 4)
+        char[] letters4 = { 'a', 'c', 'f', 'h' };
+        char key4 = 'h';
+        char result4 = solution.searchNextLetter(letters4, key4);
+        Assert.AreEqual('a', result4, "Test case 4: Incorrect next letter for key 'h'");
+
+        // Test case 5: Array with repeated letters
+        char[] letters5 = { 'a', 'b', 'b', 'c' };
+        char key5 = 'b';
+        char result5 = solution.searchNextLetter(letters5, key5);
+        Assert.AreEqual('c', result5, "Test case 5: Incorrect next letter for key 'b' in array with duplicates");
+
+        // Test case 6: Key smaller than all letters
+        char[] letters6 = { 'b', 'c', 'd' };
+        char key6 = 'a';
+        char result6 = solution.searchNextLetter(letters6, key6);
+        Assert.AreEqual('b', result6, "Test case 6: Incorrect next letter for key 'a'");
+    }
+
+    [TestMethod]
+    public void Test_FindMedianSortedArrays()
+    {
+        Programming.Patterns.TwoHeaps.TwoNumsMedian.Solution solution = new();
+
+        // Test case 1: Example 1 - Odd total length
+        int[] nums1_1 = { 1, 3 };
+        int[] nums2_1 = { 2 };
+        double result1 = solution.FindMedianSortedArrays(nums1_1, nums2_1);
+        Assert.AreEqual(2.0, result1, 0.00001, "Test case 1: Incorrect median for [1,3] and [2]");
+
+        // Test case 2: Example 2 - Even total length
+        int[] nums1_2 = { 1, 2 };
+        int[] nums2_2 = { 3, 4 };
+        double result2 = solution.FindMedianSortedArrays(nums1_2, nums2_2);
+        Assert.AreEqual(2.5, result2, 0.00001, "Test case 2: Incorrect median for [1,2] and [3,4]");
+
+        // Test case 3: One empty array
+        int[] nums1_3 = { };
+        int[] nums2_3 = { 1, 2, 3, 4 };
+        double result3 = solution.FindMedianSortedArrays(nums1_3, nums2_3);
+        Assert.AreEqual(2.5, result3, 0.00001, "Test case 3: Incorrect median for [] and [1,2,3,4]");
+
+        // Test case 4: Both arrays with single element
+        int[] nums1_4 = { 1 };
+        int[] nums2_4 = { 2 };
+        double result4 = solution.FindMedianSortedArrays(nums1_4, nums2_4);
+        Assert.AreEqual(1.5, result4, 0.00001, "Test case 4: Incorrect median for [1] and [2]");
+
+        // Test case 5: Arrays with different sizes, odd total length
+        int[] nums1_5 = { 1, 2, 3 };
+        int[] nums2_5 = { 4, 5 };
+        double result5 = solution.FindMedianSortedArrays(nums1_5, nums2_5);
+        Assert.AreEqual(3.0, result5, 0.00001, "Test case 5: Incorrect median for [1,2,3] and [4,5]");
+
+        // Test case 6: Both empty arrays (edge case, but valid per constraints)
+        int[] nums1_6 = { };
+        int[] nums2_6 = { 1 };
+        double result6 = solution.FindMedianSortedArrays(nums1_6, nums2_6);
+        Assert.AreEqual(1.0, result6, 0.00001, "Test case 6: Incorrect median for [] and [1]");
+    }
 }

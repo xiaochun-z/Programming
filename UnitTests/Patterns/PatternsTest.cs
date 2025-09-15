@@ -406,7 +406,7 @@ public partial class Patterns_Tests
     }
 
     [TestMethod]
-    public void TestAllSafeNodesCases()
+    public void Test_AllSafeNodesCases()
     {
         var solution = new Programming.Patterns.Graph.SafeNodes.Solution();
 
@@ -451,7 +451,7 @@ public partial class Patterns_Tests
     }
 
     [TestMethod]
-    public void TestAllIslandCases()
+    public void Test_AllIslandCases()
     {
         var solution = new Programming.Patterns.Island.NumOfIsland.Solution();
 
@@ -498,7 +498,7 @@ public partial class Patterns_Tests
 
 
     [TestMethod]
-    public void TestAllMaxAreaIslandCases()
+    public void Test_AllMaxAreaIslandCases()
     {
         var solution = new Programming.Patterns.Island.BiggestIsland.Solution();
 
@@ -544,7 +544,7 @@ public partial class Patterns_Tests
     }
 
     [TestMethod]
-    public void TestHeapBuilder_AllCases()
+    public void Test_HeapBuilder_AllCases()
     {
         // Test invalid constructor
         Assert.ThrowsException<ArgumentException>(() => new Programming.Patterns.TwoHeaps.HeapBuilder.HeapBuilder(2), "Expected ArgumentException for invalid type 2");

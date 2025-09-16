@@ -501,4 +501,89 @@ public partial class Patterns_Tests
         Assert.AreEqual(expected4, result4, "Test Case 4 failed");
         Assert.AreEqual(expected5, result5, "Test Case 5 failed");
     }
+
+    [TestMethod]
+    public void Test_FindwoSingleNumbers()
+    {
+        Programming.Patterns.BitwiseXOR.TwoSingleNumbers.Solution solution = new();
+        // Test Case 1: Example from problem statement
+        int[] arr1 = { 1, 4, 2, 1, 3, 5, 6, 2, 3, 5 };
+        int[] expected1 = { 4, 6 };
+
+        // Test Case 2: Example from problem statement
+        int[] arr2 = { 2, 1, 3, 2 };
+        int[] expected2 = { 1, 3 };
+
+        // Test Case 3: Minimum length array
+        int[] arr3 = { 1, 1, 2, 3 };
+        int[] expected3 = { 2, 3 };
+
+        // Test Case 4: Array with negative numbers
+        int[] arr4 = { -1, -1, 2, -3, 2, -4 };
+        int[] expected4 = { -3, -4 };
+
+        // Test Case 5: Array with maximum constraint values
+        int[] arr5 = { 30000, 1, 30000, 2, 2, -30000 };
+        int[] expected5 = { 1, -30000 };
+
+        // Act
+        int[] result1 = solution.findSingleNumbers(arr1);
+        int[] result2 = solution.findSingleNumbers(arr2);
+        int[] result3 = solution.findSingleNumbers(arr3);
+        int[] result4 = solution.findSingleNumbers(arr4);
+        int[] result5 = solution.findSingleNumbers(arr5);
+
+        // Assert
+        CollectionAssert.AreEquivalent(expected1, result1, "Test Case 1 failed");
+        CollectionAssert.AreEquivalent(expected2, result2, "Test Case 2 failed");
+        CollectionAssert.AreEquivalent(expected3, result3, "Test Case 3 failed");
+        CollectionAssert.AreEquivalent(expected4, result4, "Test Case 4 failed");
+        CollectionAssert.AreEquivalent(expected5, result5, "Test Case 5 failed");
+    }
+
+    [TestMethod]
+    public void Test_ComplementOfBase10()
+    {
+        Programming.Patterns.BitwiseXOR.ComplementOfBase10.Solution solution = new();
+        // Test Case 1: Example from problem statement
+        int num1 = 8;
+        int expected1 = 7;
+
+        // Test Case 2: Example from problem statement
+        int num2 = 10;
+        int expected2 = 5;
+
+        // Test Case 3: Small number
+        int num3 = 1;
+        int expected3 = 0;
+
+        // Test Case 4: Number with all 1s in binary
+        int num4 = 7; // 111 in binary
+        int expected4 = 0; // 000 in binary
+
+        // Test Case 5: Larger number
+        int num5 = 100;
+        int expected5 = 27; // 100 is 1100100, complement is 0011011 which is 27
+
+        int num6 = 999999999; // Close to 10^9
+        int expected6 = 73741824; // Complement of 999999999 
+        // (111011100110101100100111111111) is 
+        // (000100011001010011011000000000)
+
+        // Act
+        int result1 = solution.bitwiseComplement(num1);
+        int result2 = solution.bitwiseComplement(num2);
+        int result3 = solution.bitwiseComplement(num3);
+        int result4 = solution.bitwiseComplement(num4);
+        int result5 = solution.bitwiseComplement(num5);
+        int result6 = solution.bitwiseComplement(num6);
+
+        // Assert
+        Assert.AreEqual(expected1, result1, "Test Case 1 failed");
+        Assert.AreEqual(expected2, result2, "Test Case 2 failed");
+        Assert.AreEqual(expected3, result3, "Test Case 3 failed");
+        Assert.AreEqual(expected4, result4, "Test Case 4 failed");
+        Assert.AreEqual(expected5, result5, "Test Case 5 failed");
+        Assert.AreEqual(expected6, result6, "Test Case 6 failed");
+    }
 }

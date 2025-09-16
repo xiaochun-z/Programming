@@ -315,4 +315,190 @@ public partial class Patterns_Tests
         double result6 = solution.FindMedianSortedArrays(nums1_6, nums2_6);
         Assert.AreEqual(1.0, result6, 0.00001, "Test case 6: Incorrect median for [] and [1]");
     }
+
+    [TestMethod]
+    public void Test_FindNumberRange()
+    {
+        Programming.Patterns.ModifiedBinarySearch.NumberRange.Solution solution = new();
+        // Test Case 1: Multiple occurrences of key
+        int[] arr1 = { 4, 6, 6, 6, 9 };
+        int key1 = 6;
+        int[] expected1 = { 1, 3 };
+
+        // Test Case 2: Single occurrence of key
+        int[] arr2 = { 1, 3, 8, 10, 15 };
+        int key2 = 10;
+        int[] expected2 = { 3, 3 };
+
+        // Test Case 3: Key not present
+        int[] arr3 = { 1, 3, 8, 10, 15 };
+        int key3 = 12;
+        int[] expected3 = { -1, -1 };
+
+        // Test Case 4: Empty array
+        int[] arr4 = { };
+        int key4 = 5;
+        int[] expected4 = { -1, -1 };
+
+        // Test Case 5: Single element array, key present
+        int[] arr5 = { 1 };
+        int key5 = 1;
+        int[] expected5 = { 0, 0 };
+
+        // Test Case 6: Single element array, key not present
+        int[] arr6 = { 1 };
+        int key6 = 2;
+        int[] expected6 = { -1, -1 };
+
+        // Act
+        int[] result1 = solution.findRange(arr1, key1);
+        int[] result2 = solution.findRange(arr2, key2);
+        int[] result3 = solution.findRange(arr3, key3);
+        int[] result4 = solution.findRange(arr4, key4);
+        int[] result5 = solution.findRange(arr5, key5);
+        int[] result6 = solution.findRange(arr6, key6);
+
+        // Assert
+        CollectionAssert.AreEqual(expected1, result1, "Test Case 1 failed");
+        CollectionAssert.AreEqual(expected2, result2, "Test Case 2 failed");
+        CollectionAssert.AreEqual(expected3, result3, "Test Case 3 failed");
+        CollectionAssert.AreEqual(expected4, result4, "Test Case 4 failed");
+        CollectionAssert.AreEqual(expected5, result5, "Test Case 5 failed");
+        CollectionAssert.AreEqual(expected6, result6, "Test Case 6 failed");
+    }
+
+    [TestMethod]
+    public void Test_SearchInfinityArray()
+    {
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.Solution solution = new();
+        // Test Case 1: Key present in array
+        int[] arr1 = { 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30 };
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.ArrayReader reader1 = new(arr1);
+        int key1 = 16;
+        int expected1 = 6;
+
+        // Test Case 2: Key not present in array
+        int[] arr2 = { 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30 };
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.ArrayReader reader2 = new(arr2);
+        int key2 = 11;
+        int expected2 = -1;
+
+        // Test Case 3: Key at end of array
+        int[] arr3 = { 1, 3, 8, 10, 15 };
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.ArrayReader reader3 = new(arr3);
+        int key3 = 15;
+        int expected3 = 4;
+
+        // Test Case 4: Key beyond array bounds
+        int[] arr4 = { 1, 3, 8, 10, 15 };
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.ArrayReader reader4 = new(arr4);
+        int key4 = 200;
+        int expected4 = -1;
+
+        // Test Case 5: Empty array
+        int[] arr5 = { };
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.ArrayReader reader5 = new(arr5);
+        int key5 = 5;
+        int expected5 = -1;
+
+        // Test Case 6: Single element array, key present
+        int[] arr6 = { 1 };
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.ArrayReader reader6 = new(arr6);
+        int key6 = 1;
+        int expected6 = 0;
+
+        // Test Case 7: Single element array, key not present
+        int[] arr7 = { 1 };
+        Programming.Patterns.ModifiedBinarySearch.SearchInfinityArray.ArrayReader reader7 = new(arr7);
+        int key7 = 2;
+        int expected7 = -1;
+
+        // Act
+        int result1 = solution.searchInfiniteSortedArray(reader1, key1);
+        int result2 = solution.searchInfiniteSortedArray(reader2, key2);
+        int result3 = solution.searchInfiniteSortedArray(reader3, key3);
+        int result4 = solution.searchInfiniteSortedArray(reader4, key4);
+        int result5 = solution.searchInfiniteSortedArray(reader5, key5);
+        int result6 = solution.searchInfiniteSortedArray(reader6, key6);
+        int result7 = solution.searchInfiniteSortedArray(reader7, key7);
+
+        // Assert
+        Assert.AreEqual(expected1, result1, "Test Case 1 failed");
+        Assert.AreEqual(expected2, result2, "Test Case 2 failed");
+        Assert.AreEqual(expected3, result3, "Test Case 3 failed");
+        Assert.AreEqual(expected4, result4, "Test Case 4 failed");
+        Assert.AreEqual(expected5, result5, "Test Case 5 failed");
+        Assert.AreEqual(expected6, result6, "Test Case 6 failed");
+        Assert.AreEqual(expected7, result7, "Test Case 7 failed");
+    }
+
+    [TestMethod]
+    public void Test_FindMissingNumber()
+    {
+        Programming.Patterns.BitwiseXOR.FindMissingNumber.Solution solution = new();
+
+        // Test case 1: Array [1,2,4,5], missing 3
+        int[] arr1 = { 1, 2, 4, 5 };
+        int result1 = solution.findMissingNumber(arr1);
+        Assert.AreEqual(3, result1, "Missing number should be 3 for input [1,2,4,5]");
+
+        // Test case 2: Array [2,3,4,5], missing 1
+        int[] arr2 = { 2, 3, 4, 5 };
+        int result2 = solution.findMissingNumber(arr2);
+        Assert.AreEqual(1, result2, "Missing number should be 1 for input [2,3,4,5]");
+
+        // Test case 3: Array [1,2,3,4], missing 5
+        int[] arr3 = { 1, 2, 3, 4 };
+        int result3 = solution.findMissingNumber(arr3);
+        Assert.AreEqual(5, result3, "Missing number should be 5 for input [1,2,3,4]");
+
+        // Test case 4: Single element [1], missing 2
+        int[] arr4 = { 1 };
+        int result4 = solution.findMissingNumber(arr4);
+        Assert.AreEqual(2, result4, "Missing number should be 2 for input [1]");
+
+        // Test case 5: Larger array [1,2,3,4,5,6,8,9,10], missing 7
+        int[] arr5 = { 1, 2, 3, 4, 5, 6, 8, 9, 10 };
+        int result5 = solution.findMissingNumber(arr5);
+        Assert.AreEqual(7, result5, "Missing number should be 7 for input [1,2,3,4,5,6,8,9,10]");
+    }
+
+    [TestMethod]
+    public void Test_FindSingleNumber()
+    {
+        Programming.Patterns.BitwiseXOR.SingleNumber.Solution solution = new();
+        // Test Case 1: Example from problem statement
+        int[] arr1 = { 1, 4, 2, 1, 3, 2, 3 };
+        int expected1 = 4;
+
+        // Test Case 2: Example from problem statement
+        int[] arr2 = { 7, 9, 7 };
+        int expected2 = 9;
+
+        // Test Case 3: Single element array
+        int[] arr3 = { 5 };
+        int expected3 = 5;
+
+        // Test Case 4: Larger array with negative numbers
+        int[] arr4 = { -1, 2, -1, 3, 2, 4, 4 };
+        int expected4 = 3;
+
+        // Test Case 5: Array with maximum constraint values
+        int[] arr5 = { 30000, 1, 30000, 2, 2 };
+        int expected5 = 1;
+
+        // Act
+        int result1 = solution.findSingleNumber(arr1);
+        int result2 = solution.findSingleNumber(arr2);
+        int result3 = solution.findSingleNumber(arr3);
+        int result4 = solution.findSingleNumber(arr4);
+        int result5 = solution.findSingleNumber(arr5);
+
+        // Assert
+        Assert.AreEqual(expected1, result1, "Test Case 1 failed");
+        Assert.AreEqual(expected2, result2, "Test Case 2 failed");
+        Assert.AreEqual(expected3, result3, "Test Case 3 failed");
+        Assert.AreEqual(expected4, result4, "Test Case 4 failed");
+        Assert.AreEqual(expected5, result5, "Test Case 5 failed");
+    }
 }

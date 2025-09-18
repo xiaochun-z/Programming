@@ -637,4 +637,81 @@ public partial class Patterns_Tests
         CollectionAssert.AreEquivalent(expected5, result5, "Test Case 5 failed");
         CollectionAssert.AreEquivalent(expected6, result6, "Test Case 6 failed");
     }
+
+    [DataTestMethod]
+    [DataRow(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5, "Example 1: 3rd smallest is 5")]
+    [DataRow(new int[] { 1, 5, 12, 2, 11, 5 }, 4, 5, "Example 2: 4th smallest is 5")]
+    [DataRow(new int[] { 5, 12, 11, -1, 12 }, 3, 11, "Example 3: 3rd smallest is 11")]
+    [DataRow(new int[] { 1 }, 1, 1, "Single element array")]
+    [DataRow(new int[] { 3, 1, 4, 2 }, 4, 4, "k equals array length")]
+    [DataRow(new int[] { 7, 7, 7, 7 }, 3, 7, "All elements identical")]
+    [DataRow(new int[] { -4, -2, -1, -3 }, 2, -3, "Negative numbers only")]
+    [DataRow(new int[] { }, 1, 0, "Empty array", true)]
+    [DataRow(null, 1, 0, "Null array", true)]
+    [DataRow(new int[] { 1, 2, 3 }, 0, 0, "k <= 0", true)]
+    [DataRow(new int[] { 1, 2, 3 }, 4, 0, "k > nums.length", true)]
+    [DataRow(new int[] { 100, 50, 25, 75, 10, 90, 30, 60 }, 2, 25, "Large array, small k")]
+    [DataRow(new int[] { 100, 50, 25, 75, 10, 90, 30, 60 }, 7, 90, "Large array, large k")]
+    [DataRow(new int[] { 10000, -10000, 0, 5000, -5000 }, 3, 0, "Max/min values")]
+    [DataRow(new int[] { 2, 2, 2, 1, 1, 3, 3 }, 5, 2, "Many duplicates")]
+    [DataRow(new int[] { 10, -5, 0, 3, -2, 8 }, 4, 3, "Mixed positive/negative")]
+    public void Test_FindKthSmallestNumber(int[] nums, int k, int expected, string description, bool expectException = false)
+    {
+        Programming.Patterns.TopKElements.KthSmallest.Solution solution = new();
+
+        if (expectException)
+        {
+            Assert.ThrowsException<ArgumentException>(() => solution.findKthSmallestNumber(nums, k), description);
+        }
+        else
+        {
+            int result = solution.findKthSmallestNumber(nums, k);
+            Assert.AreEqual(expected, result, description);
+        }
+    }
+
+    [TestMethod]
+    public void Test_ConnectRopes()
+    {
+        Programming.Patterns.TopKElements.ConnectRope.Solution solution = new();
+        // Test Case 1: Example from problem statement
+        int[] ropes1 = { 1, 3, 11, 5 };
+        int expected1 = 33;
+
+        // Test Case 2: Example from problem statement
+        int[] ropes2 = { 3, 4, 5, 6 };
+        int expected2 = 36;
+
+        // Test Case 3: Example from problem statement
+        int[] ropes3 = { 1, 3, 11, 5, 2 };
+        int expected3 = 42;
+
+        // Test Case 4: Single rope
+        int[] ropes4 = { 5 };
+        int expected4 = 0;
+
+        // Test Case 5: Two ropes
+        int[] ropes5 = { 2, 3 };
+        int expected5 = 5;
+
+        // Test Case 6: Array with maximum constraint values
+        int[] ropes6 = { 10000, 10000, 10000 };
+        int expected6 = 50000;
+
+        // Act
+        int result1 = solution.minimumCostToConnectRopes(ropes1);
+        int result2 = solution.minimumCostToConnectRopes(ropes2);
+        int result3 = solution.minimumCostToConnectRopes(ropes3);
+        int result4 = solution.minimumCostToConnectRopes(ropes4);
+        int result5 = solution.minimumCostToConnectRopes(ropes5);
+        int result6 = solution.minimumCostToConnectRopes(ropes6);
+
+        // Assert
+        Assert.AreEqual(expected1, result1, "Test Case 1 failed");
+        Assert.AreEqual(expected2, result2, "Test Case 2 failed");
+        Assert.AreEqual(expected3, result3, "Test Case 3 failed");
+        Assert.AreEqual(expected4, result4, "Test Case 4 failed");
+        Assert.AreEqual(expected5, result5, "Test Case 5 failed");
+        Assert.AreEqual(expected6, result6, "Test Case 6 failed");
+    }
 }

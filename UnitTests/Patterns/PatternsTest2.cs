@@ -714,4 +714,54 @@ public partial class Patterns_Tests
         Assert.AreEqual(expected5, result5, "Test Case 5 failed");
         Assert.AreEqual(expected6, result6, "Test Case 6 failed");
     }
+
+    public void Test_TopKFreqency()
+    {
+        Programming.Patterns.TopKElements.TopKFreqency.Solution solution = new();
+        // Test Case 1: Example from problem statement
+        int[] arr1 = { 1, 3, 5, 12, 11, 12, 11 };
+        int k1 = 2;
+        List<int> expected1 = new List<int> { 12, 11 };
+
+        // Test Case 2: Example from problem statement
+        int[] arr2 = { 5, 12, 11, 3, 11 };
+        int k2 = 2;
+        List<int> expected2 = new List<int> { 11, 5 }; // 11 appears twice, others once
+
+        // Test Case 3: Single element array
+        int[] arr3 = { 1 };
+        int k3 = 1;
+        List<int> expected3 = new List<int> { 1 };
+
+        // Test Case 4: Array with all elements having same frequency
+        int[] arr4 = { 1, 2, 3, 4 };
+        int k4 = 2;
+        List<int> expected4 = new List<int> { 1, 2 }; // Any two numbers are valid
+
+        // Test Case 5: Array with negative numbers
+        int[] arr5 = { -1, -1, -2, -2, -3 };
+        int k5 = 2;
+        List<int> expected5 = new List<int> { -1, -2 };
+
+        // Test Case 6: Maximum constraint values
+        int[] arr6 = { 100000, 100000, -100000, -100000, 50000 };
+        int k6 = 2;
+        List<int> expected6 = new List<int> { 100000, -100000 };
+
+        // Act
+        List<int> result1 = solution.findTopKFrequentNumbers(arr1, k1);
+        List<int> result2 = solution.findTopKFrequentNumbers(arr2, k2);
+        List<int> result3 = solution.findTopKFrequentNumbers(arr3, k3);
+        List<int> result4 = solution.findTopKFrequentNumbers(arr4, k4);
+        List<int> result5 = solution.findTopKFrequentNumbers(arr5, k5);
+        List<int> result6 = solution.findTopKFrequentNumbers(arr6, k6);
+
+        // Assert
+        CollectionAssert.AreEquivalent(expected1, result1, "Test Case 1 failed");
+        CollectionAssert.AreEquivalent(expected2, result2, "Test Case 2 failed");
+        CollectionAssert.AreEquivalent(expected3, result3, "Test Case 3 failed");
+        CollectionAssert.AreEquivalent(expected4, result4, "Test Case 4 failed");
+        CollectionAssert.AreEquivalent(expected5, result5, "Test Case 5 failed");
+        CollectionAssert.AreEquivalent(expected6, result6, "Test Case 6 failed");
+    }
 }

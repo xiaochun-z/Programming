@@ -122,4 +122,50 @@ public partial class Patterns_Tests
         int result6 = solution.numRescueBoats(people6, limit6);
         Assert.AreEqual(2, result6, "Test Case 6: Minimum boats for people=[1,1,1,1], limit=2 should be 2 (pairs: 1+1, 1+1)");
     }
+
+    [TestMethod]
+    public void Test_ValidPalindromeII()
+    {
+        Programming.Patterns.Greedy.ValidPalindromeII.Solution solution = new();
+        // Test Case 1: Example 1 - s="racecar"
+        // Expected: true (already a palindrome)
+        string s1 = "racecar";
+        bool result1 = solution.isPalindromePossible(s1);
+        Assert.IsTrue(result1, "Test Case 1: 'racecar' is already a palindrome, should return true");
+
+        // Test Case 2: Example 2 - s="abccdba"
+        // Expected: true (remove 'd' to form "abccba")
+        string s2 = "abccdba";
+        bool result2 = solution.isPalindromePossible(s2);
+        Assert.IsTrue(result2, "Test Case 2: 'abccdba' can be palindrome by removing 'd', should return true");
+
+        // Test Case 3: Example 3 - s="abcdef"
+        // Expected: false (no single removal makes it a palindrome)
+        string s3 = "abcdef";
+        bool result3 = solution.isPalindromePossible(s3);
+        Assert.IsFalse(result3, "Test Case 3: 'abcdef' cannot be a palindrome with one removal, should return false");
+
+        // Test Case 4: Single character
+        // Expected: true (single character is always a palindrome)
+        string s4 = "a";
+        bool result4 = solution.isPalindromePossible(s4);
+        Assert.IsTrue(result4, "Test Case 4: Single character 'a' is a palindrome, should return true");
+
+        // Test Case 5: Two characters, not equal
+        // Expected: true (remove one to make a single-character palindrome)
+        string s5 = "ab";
+        bool result5 = solution.isPalindromePossible(s5);
+        Assert.IsTrue(result5, "Test Case 5: 'ab' can be a palindrome by removing one character, should return true");
+
+        // Test Case 6: Long string requiring one removal
+        string s6 = "aabbccde";
+        bool result6 = solution.isPalindromePossible(s6);
+        Assert.IsFalse(result6);
+
+        // Test Case 7: Long string where no single removal works
+        // Expected: false
+        string s7 = "abcde";
+        bool result7 = solution.isPalindromePossible(s7);
+        Assert.IsFalse(result7, "Test Case 7: 'abcde' cannot be a palindrome with one removal, should return false");
+    }
 }

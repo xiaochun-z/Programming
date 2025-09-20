@@ -168,4 +168,45 @@ public partial class Patterns_Tests
         bool result7 = solution.isPalindromePossible(s7);
         Assert.IsFalse(result7, "Test Case 7: 'abcde' cannot be a palindrome with one removal, should return false");
     }
+
+    [TestMethod]
+    public void Test_MaxLengthOfPairChain()
+    {
+        Programming.Patterns.Greedy.MaxLengthOfPairChain.Solution solution = new();
+        // Test Case 1: Example 1 - pairs=[[1,2], [3,4], [2,3]]
+        // Expected: 2 ([1,2] -> [3,4])
+        int[][] pairs1 = new int[][] { new int[] { 1, 2 }, new int[] { 3, 4 }, new int[] { 2, 3 } };
+        int result1 = solution.findLongestChain(pairs1);
+        Assert.AreEqual(2, result1, "Test Case 1: Maximum chain length for [[1,2], [3,4], [2,3]] should be 2");
+
+        // Test Case 2: Example 2 - pairs=[[5,6], [1,2], [8,9], [2,3]]
+        // Expected: 3 ([1,2] -> [5,6] -> [8,9])
+        int[][] pairs2 = new int[][] { new int[] { 5, 6 }, new int[] { 1, 2 }, new int[] { 8, 9 }, new int[] { 2, 3 } };
+        int result2 = solution.findLongestChain(pairs2);
+        Assert.AreEqual(3, result2, "Test Case 2: Maximum chain length for [[5,6], [1,2], [8,9], [2,3]] should be 3");
+
+        // Test Case 3: Example 3 - pairs=[[7,8], [5,6], [1,2], [3,5], [4,5], [2,3]]
+        // Expected: 3 ([1,2] -> [3,5] -> [7,8])
+        int[][] pairs3 = new int[][] { new int[] { 7, 8 }, new int[] { 5, 6 }, new int[] { 1, 2 }, new int[] { 3, 5 }, new int[] { 4, 5 }, new int[] { 2, 3 } };
+        int result3 = solution.findLongestChain(pairs3);
+        Assert.AreEqual(3, result3, "Test Case 3: Maximum chain length for [[7,8], [5,6], [1,2], [3,5], [4,5], [2,3]] should be 3");
+
+        // Test Case 4: Single pair
+        // Expected: 1
+        int[][] pairs4 = new int[][] { new int[] { 1, 2 } };
+        int result4 = solution.findLongestChain(pairs4);
+        Assert.AreEqual(1, result4, "Test Case 4: Maximum chain length for [[1,2]] should be 1");
+
+        // Test Case 5: Pairs with negative values
+        // Expected: 2 ([-2,0] -> [1,2])
+        int[][] pairs5 = new int[][] { new int[] { -2, 0 }, new int[] { 1, 2 }, new int[] { -3, -1 } };
+        int result5 = solution.findLongestChain(pairs5);
+        Assert.AreEqual(2, result5, "Test Case 5: Maximum chain length for [[-2,0], [1,2], [-3,-1]] should be 2");
+
+        // Test Case 6: No valid chain longer than 1
+        // Expected: 1 (no pair has b < c for any other pair)
+        int[][] pairs6 = new int[][] { new int[] { 1, 3 }, new int[] { 2, 4 }, new int[] { 3, 5 } };
+        int result6 = solution.findLongestChain(pairs6);
+        Assert.AreEqual(1, result6, "Test Case 6: Maximum chain length for [[1,3], [2,4], [3,5]] should be 1");
+    }
 }

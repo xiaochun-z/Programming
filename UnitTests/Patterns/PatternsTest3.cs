@@ -75,4 +75,51 @@ public partial class Patterns_Tests
         int result6 = solution.findKthSmallest(lists6, k6);
         Assert.AreEqual(5, result6, "Test Case 6: 1st smallest number in [[5], [], []] should be 5");
     }
+
+    [TestMethod]
+    public void Test_BoatsToSavePeople()
+    {
+        Programming.Patterns.Greedy.Solution solution = new();
+        // Test Case 1: Example from problem - people=[10,55,70,20,90,85], limit=100
+        // Expected: 4
+        int[] people1 = new int[] { 10, 55, 70, 20, 90, 85 };
+        int limit1 = 100;
+        int result1 = solution.numRescueBoats(people1, limit1);
+        Assert.AreEqual(4, result1, "Test Case 1: Minimum boats for people=[10,55,70,20,90,85], limit=100 should be 4");
+
+        // Test Case 2: Single person with weight equal to limit
+        // Expected: 1
+        int[] people2 = new int[] { 50 };
+        int limit2 = 50;
+        int result2 = solution.numRescueBoats(people2, limit2);
+        Assert.AreEqual(1, result2, "Test Case 2: Minimum boats for people=[50], limit=50 should be 1");
+
+        // Test Case 3: All people with weight equal to limit (no pairing possible)
+        // Expected: 3
+        int[] people3 = new int[] { 100, 100, 100 };
+        int limit3 = 100;
+        int result3 = solution.numRescueBoats(people3, limit3);
+        Assert.AreEqual(3, result3, "Test Case 3: Minimum boats for people=[100,100,100], limit=100 should be 3");
+
+        // Test Case 4: People with weights allowing maximum pairing
+        // Expected: 2
+        int[] people4 = new int[] { 10, 20, 30, 40 };
+        int limit4 = 60;
+        int result4 = solution.numRescueBoats(people4, limit4);
+        Assert.AreEqual(2, result4, "Test Case 4: Minimum boats for people=[10,20,30,40], limit=60 should be 2 (pairs: 10+40, 20+30)");
+
+        // Test Case 5: Single person with weight less than limit
+        // Expected: 1
+        int[] people5 = new int[] { 30 };
+        int limit5 = 100;
+        int result5 = solution.numRescueBoats(people5, limit5);
+        Assert.AreEqual(1, result5, "Test Case 5: Minimum boats for people=[30], limit=100 should be 1");
+
+        // Test Case 6: All people with minimum weight, maximum pairing
+        // Expected: 2
+        int[] people6 = new int[] { 1, 1, 1, 1 };
+        int limit6 = 2;
+        int result6 = solution.numRescueBoats(people6, limit6);
+        Assert.AreEqual(2, result6, "Test Case 6: Minimum boats for people=[1,1,1,1], limit=2 should be 2 (pairs: 1+1, 1+1)");
+    }
 }

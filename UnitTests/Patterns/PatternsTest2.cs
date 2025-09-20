@@ -764,4 +764,87 @@ public partial class Patterns_Tests
         CollectionAssert.AreEquivalent(expected5, result5, "Test Case 5 failed");
         CollectionAssert.AreEquivalent(expected6, result6, "Test Case 6 failed");
     }
+
+    [TestMethod]
+    public void Test_KMerge()
+    {
+        // Helper function to create a linked list from an array
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode CreateList(int[] values)
+        {
+            Programming.Patterns.KMerge.MergeKSortedLists.ListNode dummy = new(0);
+            Programming.Patterns.KMerge.MergeKSortedLists.ListNode current = dummy;
+            foreach (int val in values)
+            {
+                current.Next = new Programming.Patterns.KMerge.MergeKSortedLists.ListNode(val);
+                current = current.Next;
+            }
+            return dummy.Next!;
+        }
+
+        // Helper function to convert linked list to array for comparison
+        List<int> ListToArray(Programming.Patterns.KMerge.MergeKSortedLists.ListNode head)
+        {
+            List<int> result = new List<int>();
+            Programming.Patterns.KMerge.MergeKSortedLists.ListNode current = head;
+            while (current != null)
+            {
+                result.Add(current.Val);
+                current = current.Next!;
+            }
+            return result;
+        }
+
+        // Test Case 1: Example 1 - L1=[2,6,8], L2=[3,6,7], L3=[1,3,4]
+        // Expected: [1,2,3,3,4,6,6,7,8]
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode[] lists1 = new Programming.Patterns.KMerge.MergeKSortedLists.ListNode[]
+        {
+        CreateList(new int[] { 2, 6, 8 }),
+        CreateList(new int[] { 3, 6, 7 }),
+        CreateList(new int[] { 1, 3, 4 })
+        };
+        Programming.Patterns.KMerge.MergeKSortedLists.Solution solution = new();
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode? result1 = solution.merge(lists1);
+        CollectionAssert.AreEqual(new int[] { 1, 2, 3, 3, 4, 6, 6, 7, 8 }, ListToArray(result1!), "Test Case 1: Merging [2,6,8], [3,6,7], [1,3,4] failed.");
+
+        // Test Case 2: Example 2 - L1=[5,8,9], L2=[1,7]
+        // Expected: [1,5,7,8,9]
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode[] lists2 = new Programming.Patterns.KMerge.MergeKSortedLists.ListNode[]
+        {
+        CreateList(new int[] { 5, 8, 9 }),
+        CreateList(new int[] { 1, 7 })
+        };
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode? result2 = solution.merge(lists2);
+        CollectionAssert.AreEqual(new int[] { 1, 5, 7, 8, 9 }, ListToArray(result2!), "Test Case 2: Merging [5,8,9], [1,7] failed.");
+
+        // Test Case 3: Empty array of lists
+        // Expected: null
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode[] lists3 = new Programming.Patterns.KMerge.MergeKSortedLists.ListNode[0];
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode? result3 = solution.merge(lists3);
+        Assert.IsNull(result3, "Test Case 3: Empty array of lists should return null.");
+
+        // Test Case 4: Array with a single list [1,2,3]
+        // Expected: [1,2,3]
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode[] lists4 = new Programming.Patterns.KMerge.MergeKSortedLists.ListNode[]
+        {
+        CreateList(new int[] { 1, 2, 3 })
+        };
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode? result4 = solution.merge(lists4);
+        CollectionAssert.AreEqual(new int[] { 1, 2, 3 }, ListToArray(result4!), "Test Case 4: Single list [1,2,3] failed.");
+
+        // Test Case 5: Array with null and empty lists
+        // Expected: null
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode?[] lists5 = [null, null];
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode? result5 = solution.merge(lists5!);
+        Assert.IsNull(result5, "Test Case 5: Array with null lists should return null.");
+
+        // Test Case 6: Lists with negative values and duplicates
+        // Expected: [-2,-1,0,0,1]
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode[] lists6 = new Programming.Patterns.KMerge.MergeKSortedLists.ListNode[]
+        {
+        CreateList(new int[] { -2, 0, 1 }),
+        CreateList(new int[] { -1, 0 })
+        };
+        Programming.Patterns.KMerge.MergeKSortedLists.ListNode? result6 = solution.merge(lists6);
+        CollectionAssert.AreEqual(new int[] { -2, -1, 0, 0, 1 }, ListToArray(result6!), "Test Case 6: Lists with negative values [-2,0,1], [-1,0] failed.");
+    }
 }

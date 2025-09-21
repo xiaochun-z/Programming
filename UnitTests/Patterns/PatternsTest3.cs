@@ -209,4 +209,57 @@ public partial class Patterns_Tests
         int result6 = solution.findLongestChain(pairs6);
         Assert.AreEqual(1, result6, "Test Case 6: Maximum chain length for [[1,3], [2,4], [3,5]] should be 1");
     }
+
+    [TestMethod]
+    public void Test_MinimumParenthesesAddedToMakeValid()
+    {
+        Programming.Patterns.Greedy.MinimumParenthese.Solution solution = new();
+        // Test Case 1: Example 1 - s="(()"
+        // Expected: 1 (add one closing parenthesis)
+        string s1 = "(()";
+        int result1 = solution.minAddToMakeValid(s1);
+        Assert.AreEqual(1, result1, "Test Case 1: Minimum additions for '(()' should be 1");
+
+        // Test Case 2: Example 2 - s="))(("
+        // Expected: 4 (add two opening and two closing parentheses)
+        string s2 = "))((";
+        int result2 = solution.minAddToMakeValid(s2);
+        Assert.AreEqual(4, result2, "Test Case 2: Minimum additions for '))((' should be 4");
+
+        // Test Case 3: Example 3 - s="(()())("
+        // Expected: 1 (add one closing parenthesis)
+        string s3 = "(()())(";
+        int result3 = solution.minAddToMakeValid(s3);
+        Assert.AreEqual(1, result3, "Test Case 3: Minimum additions for '(()())(' should be 1");
+
+        // Test Case 4: Empty string
+        // Expected: 0 (already valid)
+        string s4 = "";
+        int result4 = solution.minAddToMakeValid(s4);
+        Assert.AreEqual(0, result4, "Test Case 4: Minimum additions for empty string should be 0");
+
+        // Test Case 5: Single opening parenthesis
+        // Expected: 1 (add one closing parenthesis)
+        string s5 = "(";
+        int result5 = solution.minAddToMakeValid(s5);
+        Assert.AreEqual(1, result5, "Test Case 5: Minimum additions for '(' should be 1");
+
+        // Test Case 6: Single closing parenthesis
+        // Expected: 1 (add one opening parenthesis)
+        string s6 = ")";
+        int result6 = solution.minAddToMakeValid(s6);
+        Assert.AreEqual(1, result6, "Test Case 6: Minimum additions for ')' should be 1");
+
+        // Test Case 7: Already valid string
+        // Expected: 0 (no additions needed)
+        string s7 = "()()";
+        int result7 = solution.minAddToMakeValid(s7);
+        Assert.AreEqual(0, result7, "Test Case 7: Minimum additions for '()()' should be 0");
+
+        // Test Case 8: Complex unbalanced string
+        // Expected: 2 (add two parentheses to balance)
+        string s8 = "())(";
+        int result8 = solution.minAddToMakeValid(s8);
+        Assert.AreEqual(2, result8, "Test Case 8: Minimum additions for '())(' should be 3");
+    }
 }

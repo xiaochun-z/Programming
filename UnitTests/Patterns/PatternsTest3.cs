@@ -309,4 +309,12 @@ public partial class Patterns_Tests
         bool result7 = solution.canPartition(num7);
         Assert.IsTrue(result7, "Test Case 7: Array [100,100,100,100] should be partitionable into equal sum subsets");
     }
+
+    [TestMethod]
+    public void Test_FibonacciNumbers()
+    {
+        Programming.Patterns.FibonacciNumbers.Dp.Solution solution = new();
+        Assert.AreEqual(2, solution.calculateFibonacci(3));
+        Assert.AreEqual(3, solution.calculateFibonacci(4));
+    }
 }

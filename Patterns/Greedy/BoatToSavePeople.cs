@@ -1,4 +1,4 @@
-namespace Programming.Patterns.Greedy;
+namespace Programming.Patterns.Greedy.BoatToSavePeople;
 
 /*
 Problem Statement (Boats to Save People)

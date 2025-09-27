@@ -79,7 +79,7 @@ public partial class Patterns_Tests
     [TestMethod]
     public void Test_BoatsToSavePeople()
     {
-        Programming.Patterns.Greedy.Solution solution = new();
+        Programming.Patterns.Greedy.BoatToSavePeople.Solution solution = new();
         // Test Case 1: Example from problem - people=[10,55,70,20,90,85], limit=100
         // Expected: 4
         int[] people1 = new int[] { 10, 55, 70, 20, 90, 85 };

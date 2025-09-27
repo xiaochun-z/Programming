@@ -262,4 +262,51 @@ public partial class Patterns_Tests
         int result8 = solution.minAddToMakeValid(s8);
         Assert.AreEqual(2, result8, "Test Case 8: Minimum additions for '())(' should be 3");
     }
+
+    [TestMethod]
+    public void Test_EqualSubsetSumPartition()
+    {
+        Programming.Patterns.Knapsack.EqualSubsetSumPartition.Solution solution = new();
+        // Test Case 1: Example 1 - num=[1,2,3,4]
+        // Expected: True (subsets: {1,4} and {2,3}, both sum to 5)
+        int[] num1 = new int[] { 1, 2, 3, 4 };
+        bool result1 = solution.canPartition(num1);
+        Assert.IsTrue(result1, "Test Case 1: Array [1,2,3,4] should be partitionable into equal sum subsets");
+
+        // Test Case 2: Example 2 - num=[1,1,3,4,7]
+        // Expected: True (subsets: {1,3,4} and {1,7}, both sum to 8)
+        int[] num2 = new int[] { 1, 1, 3, 4, 7 };
+        bool result2 = solution.canPartition(num2);
+        Assert.IsTrue(result2, "Test Case 2: Array [1,1,3,4,7] should be partitionable into equal sum subsets");
+
+        // Test Case 3: Example 3 - num=[2,3,4,6]
+        // Expected: False (sum=15, cannot partition into two equal sums)
+        int[] num3 = new int[] { 2, 3, 4, 6 };
+        bool result3 = solution.canPartition(num3);
+        Assert.IsFalse(result3, "Test Case 3: Array [2,3,4,6] cannot be partitioned into equal sum subsets");
+
+        // Test Case 4: Single element
+        // Expected: False (cannot partition one element into two non-empty subsets)
+        int[] num4 = new int[] { 1 };
+        bool result4 = solution.canPartition(num4);
+        Assert.IsFalse(result4, "Test Case 4: Array [1] cannot be partitioned into equal sum subsets");
+
+        // Test Case 5: Two equal elements
+        // Expected: True (subsets: {1} and {1}, both sum to 1)
+        int[] num5 = new int[] { 1, 1 };
+        bool result5 = solution.canPartition(num5);
+        Assert.IsTrue(result5, "Test Case 5: Array [1,1] should be partitionable into equal sum subsets");
+
+        // Test Case 6: Array with odd total sum
+        // Expected: False (sum=7, cannot partition into two equal sums)
+        int[] num6 = new int[] { 2, 2, 3 };
+        bool result6 = solution.canPartition(num6);
+        Assert.IsFalse(result6, "Test Case 6: Array [2,2,3] cannot be partitioned into equal sum subsets");
+
+        // Test Case 7: Array with maximum values
+        // Expected: True (subsets: {100,100} and {100,100}, both sum to 200)
+        int[] num7 = new int[] { 100, 100, 100, 100 };
+        bool result7 = solution.canPartition(num7);
+        Assert.IsTrue(result7, "Test Case 7: Array [100,100,100,100] should be partitionable into equal sum subsets");
+    }
 }

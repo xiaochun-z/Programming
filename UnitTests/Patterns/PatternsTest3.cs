@@ -317,4 +317,31 @@ public partial class Patterns_Tests
         Assert.AreEqual(2, solution.calculateFibonacci(3));
         Assert.AreEqual(3, solution.calculateFibonacci(4));
     }
+
+    [TestMethod]
+    public void Test_LongestPalindromeSubSequence()
+    {
+        var solution = new Programming.Patterns.Palindromic.LongestPalindromicSubsequence.Solution();
+
+        // --- Provided Examples ---
+        Assert.AreEqual(5, solution.findLPSLength("abdbca"));   // "abdba"
+        Assert.AreEqual(3, solution.findLPSLength("cddpd"));    // "ddd"
+        Assert.AreEqual(1, solution.findLPSLength("pqr"));      // "p" or "q" or "r"
+
+        // --- Additional Edge Cases ---
+        // Single character (minimum length per constraints)
+        Assert.AreEqual(1, solution.findLPSLength("a"));
+
+        // All same characters -> whole string is palindromic
+        Assert.AreEqual(5, solution.findLPSLength("aaaaa"));
+
+        // Already a palindrome -> LPS is the entire string
+        Assert.AreEqual(7, solution.findLPSLength("racecar"));
+
+        // Two different characters -> any single char is the LPS
+        Assert.AreEqual(1, solution.findLPSLength("ab"));
+
+        // Classic mixed case with multiple options; known LPS length is 4 ("bbbb")
+        Assert.AreEqual(4, solution.findLPSLength("bbbab"));
+    }
 }

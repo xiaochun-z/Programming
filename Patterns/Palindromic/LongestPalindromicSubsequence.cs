@@ -32,7 +32,22 @@ public class Solution
 {
     public int findLPSLength(string st)
     {
-        // TODO: Write your code here
-        return -1;
+        return findLPSLengthInternal(st, 0, st.Length-1);
+    }
+
+    private int findLPSLengthInternal(string st, int i, int j)
+    {
+        if (i > j) return 0;
+        if (i == j) return 1;
+
+        if (st[i] == st[j])
+        {
+            return 2 + findLPSLengthInternal(st, i + 1, j - 1);
+        }
+
+        var c1 = findLPSLengthInternal(st, i + 1, j);
+        var c2 = findLPSLengthInternal(st, i, j - 1);
+
+        return Math.Max(c1, c2);
     }
 }

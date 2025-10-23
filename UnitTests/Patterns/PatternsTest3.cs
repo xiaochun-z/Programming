@@ -344,4 +344,87 @@ public partial class Patterns_Tests
         // Classic mixed case with multiple options; known LPS length is 4 ("bbbb")
         Assert.AreEqual(4, solution.findLPSLength("bbbab"));
     }
+
+    private static void AssertListsEqual(List<List<int>> actual, List<List<int>> expected, string message)
+    {
+        // Convert lists to sorted strings for comparison
+        var actualSet = actual.Select(list => string.Join(",", list.OrderBy(x => x))).OrderBy(s => s).ToList();
+        var expectedSet = expected.Select(list => string.Join(",", list.OrderBy(x => x))).OrderBy(s => s).ToList();
+        CollectionAssert.AreEqual(expectedSet, actualSet, message);
+    }
+
+    [TestMethod]
+    public void Test_Backtracking_CombinationSum()
+    {
+        Programming.Patterns.Backtracking.CombinationSum.Solution solution = new();
+
+        // Test Case 1: Example 1 - candidates=[2,3,6,7], target=7
+        // Expected: [[2,2,3], [7]]
+        int[] candidates1 = [2, 3, 6, 7];
+        int target1 = 7;
+        List<List<int>> expected1 =
+        [
+        [2, 2, 3],
+        [7]];
+        List<List<int>> result1 = solution.combinationSum(candidates1, target1);
+        AssertListsEqual(result1, expected1, "Test Case 1: Combinations for candidates=[2,3,6,7], target=7 should be [[2,2,3], [7]]");
+
+        // Test Case 2: Example 2 - candidates=[2,4,6,8], target=10
+        // Expected: [[2,2,2,2,2], [2,2,2,4], [2,2,6], [2,4,4], [2,8], [4,6]]
+        int[] candidates2 = [2, 4, 6, 8];
+        int target2 = 10;
+        List<List<int>> expected2 =
+    [
+        [2, 2, 2, 2, 2],
+        [2, 2, 2, 4],
+        [2, 2, 6],
+        [2, 4, 4],
+        [2, 8],
+        [4, 6]
+    ];
+        List<List<int>> result2 = solution.combinationSum(candidates2, target2);
+        AssertListsEqual(result2, expected2, "Test Case 2: Combinations for candidates=[2,4,6,8], target=10 should be [[2,2,2,2,2], [2,2,2,4], [2,2,6], [2,4,4], [2,8], [4,6]]");
+
+        // Test Case 3: Single candidate, target equals candidate
+        // Expected: [[2]]
+        int[] candidates3 = [2];
+        int target3 = 2;
+        List<List<int>> expected3 =
+    [
+        [2]
+    ];
+        List<List<int>> result3 = solution.combinationSum(candidates3, target3);
+        AssertListsEqual(result3, expected3, "Test Case 3: Combinations for candidates=[2], target=2 should be [[2]]");
+
+        // Test Case 4: No valid combinations
+        // Expected: [] (empty list)
+        int[] candidates4 = [3, 5, 7];
+        int target4 = 2;
+        List<List<int>> expected4 = new List<List<int>> { };
+        List<List<int>> result4 = solution.combinationSum(candidates4, target4);
+        AssertListsEqual(result4, expected4, "Test Case 4: Combinations for candidates=[3,5,7], target=2 should be []");
+
+        // Test Case 5: Single candidate, multiple uses
+        // Expected: [[2,2,2]]
+        int[] candidates5 = [2];
+        int target5 = 6;
+        List<List<int>> expected5 =
+    [
+        [2, 2, 2]
+    ];
+        List<List<int>> result5 = solution.combinationSum(candidates5, target5);
+        AssertListsEqual(result5, expected5, "Test Case 5: Combinations for candidates=[2], target=6 should be [[2,2,2]]");
+
+        // Test Case 6: Large target with multiple candidates
+        // Expected: [[2,2,2,2], [2,3,3]]
+        int[] candidates6 = new int[] { 2, 3 };
+        int target6 = 8;
+        List<List<int>> expected6 =
+    [
+        [2, 2, 2, 2],
+        [2, 3, 3]
+    ];
+        List<List<int>> result6 = solution.combinationSum(candidates6, target6);
+        AssertListsEqual(result6, expected6, "Test Case 6: Combinations for candidates=[2,3], target=8 should be [[2,2,2,2], [2,3,3]]");
+    }
 }

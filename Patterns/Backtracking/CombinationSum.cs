@@ -33,9 +33,34 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 public class Solution {
-    public List<List<int>> combinationSum(int[] candidates, int target) {
-        List<List<int>> res = new List<List<int>>();
-        // TODO: Write your code here
+    public List<List<int>> combinationSum(int[] candidates, int target)
+    {
+        Array.Sort(candidates);
+        var res = new List<List<int>>();
+        var path = new List<int>();
+
+        BacktrackCombine(0, 0);
         return res;
+
+        void BacktrackCombine(int start, int currentSum)
+        {
+            if (currentSum == target)
+            {
+                res.Add([.. path]);
+                return;
+            }
+            if (currentSum > target || start >= candidates.Length)
+            {
+                return;
+            }
+
+            // 1) 选当前 start
+            path.Add(candidates[start]);
+            BacktrackCombine(start, currentSum + candidates[start]); // 可重复使用
+            path.RemoveAt(path.Count - 1);
+
+            // 2) 不选当前 start，尝试下一个
+            BacktrackCombine(start + 1, currentSum);
+        }
     }
 }
